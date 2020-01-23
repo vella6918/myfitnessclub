@@ -19,12 +19,29 @@
       </li>
 
       <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url();?>/about">About</a>
+        <a class="nav-link" href="<?php echo base_url();?>about">About</a>
       </li>
 
+    </ul>
+    
+    <ul>
+    	<li class="nav-item navbar-nav navbar-right">
+        	<a class="nav-link" href="<?php echo base_url();?>users/register">Register</a>
+      	</li>
     </ul>
 
   </div>
 </nav>
 
 <div class="container">
+
+<!--  Display Flash Messages -->
+
+<div>
+
+<?php if($this->session->flashdata('user_registered')):?>
+<?php $flash_message = $this->session->flashdata('user_registered');?>
+<?php echo '<p class="alert a;ert-success">'.$flash_message.'</p>';?>
+<?php endif;?>
+
+</div>
