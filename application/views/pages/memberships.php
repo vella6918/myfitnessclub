@@ -9,7 +9,7 @@
               </div>
               <div class="card-body">
                 <h5 class="card-title">&euro;<?php echo $membership['price'];?></h5>
-                <a href="#" class="btn btn-primary">Buy / Renew</a>
+                <a href="<?php echo base_url().'memberships/buy/'.$membership['membership_id'];?>" class="btn btn-primary">Buy / Renew</a>
               </div>
             </div>
             <br>

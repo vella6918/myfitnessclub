@@ -4,6 +4,7 @@ class Membership_model extends CI_Model{
     
     public function __construct(){
         $this->load->database();
+        $this->transTable = 'payments';
     }
     
     //Get all memberships
@@ -19,6 +20,15 @@ class Membership_model extends CI_Model{
         $query = $this->db->get_where('memberships', array('membership_id' => $membership_id));
         return $query->row_array();
         
+    }
+    
+    /*
+     * Insert data in the database
+     * @param data array
+     */
+    public function insertTransaction($data){
+        $insert = $this->db->insert($this->transTable,$data);
+        return $insert?true:false;
     }
     
 }
