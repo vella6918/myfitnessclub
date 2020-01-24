@@ -9,10 +9,10 @@
             //setting errors
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('surname', 'Surname', 'required');
-            $this->form_validation->set_rules('username', 'Username', 'required');
-            $this->form_validation->set_rules('email', 'Email', 'required');
-            $this->form_validation->set_rules('password', 'Password', 'required');
-            $this->form_validation->set_rules('password2', 'Confirm Password', 'required', 'matches[password');
+            $this->form_validation->set_rules('username', 'Username', 'required|callback_check_username_exists');
+            $this->form_validation->set_rules('email', 'Email', 'required|callback_check_email_exists');
+            $this->form_validation->set_rules('password', 'Password', 'required|callback_valid_password');
+            $this->form_validation->set_rules('password2', 'Confirm Password', 'required', 'matches[password]');
             
             if($this->form_validation->run() === FALSE){
                 //displaying the register page with errors
@@ -33,7 +33,8 @@
                 redirect('users/login');
             }
         }//end of method register
-            
+        
+                 
             
             //Login User method
             public function login() {
@@ -115,5 +116,73 @@
                     redirect('user/login');
                 }
             }//End of check login method
+            
+            //Check if username exists
+            public function check_username_exists($username){
+                //set error message
+                $this->form_validation->set_message('check_username_exists', 'That username is taken. Please choose a different one.');
+                
+                //Database check in user model
+                if($this->user_model->check_username_exists($username)){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            
+            
+            // Check if email exists
+            public function check_email_exists($email){
+                $this->form_validation->set_message('check_email_exists', 'That email is taken. Please choose a different one.');
+                if($this->user_model->check_email_exists($email)){
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            
+            
+            //Natanfelles (2016). CodeIgniter Strong Password Validation. Available at:https://forum.codeigniter.com/thread-66889.html (Accessed 24th January 2020)
+            public function valid_password($password = '')
+            {
+                $password = trim($password);
+                $regex_lowercase = '/[a-z]/';
+                $regex_uppercase = '/[A-Z]/';
+                $regex_number = '/[0-9]/';
+                $regex_special = '/[!@#$%^&*()\-_=+{};:,<.>§~]/';
+
+                if (preg_match_all($regex_lowercase, $password) < 1)
+                {
+                    $this->form_validation->set_message('valid_password', 'The {field} field must be at least one lowercase letter.');
+                    return FALSE;
+                }
+                if (preg_match_all($regex_uppercase, $password) < 1)
+                {
+                    $this->form_validation->set_message('valid_password', 'The {field} field must be at least one uppercase letter.');
+                    return FALSE;
+                }
+                if (preg_match_all($regex_number, $password) < 1)
+                {
+                    $this->form_validation->set_message('valid_password', 'The {field} field must have at least one number.');
+                    return FALSE;
+                }
+                if (preg_match_all($regex_special, $password) < 1)
+                {
+                    $this->form_validation->set_message('valid_password', 'The {field} field must have at least one special character.' . ' ' . htmlentities('!@#$%^&*()\-_=+{};:,<.>§~'));
+                    return FALSE;
+                }
+                if (strlen($password) < 5)
+                {
+                    $this->form_validation->set_message('valid_password', 'The {field} field must be at least 5 characters in length.');
+                    return FALSE;
+                }
+                if (strlen($password) > 32)
+                {
+                    $this->form_validation->set_message('valid_password', 'The {field} field cannot exceed 32 characters in length.');
+                    return FALSE;
+                }
+                return TRUE;
+            }
+            
 
     }//end of class
