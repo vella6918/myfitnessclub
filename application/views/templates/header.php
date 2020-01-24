@@ -2,6 +2,7 @@
 	<head>
 		<title>My Fitness Club</title>
 		<link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
+		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css">
 	</head>
 	<body>
 	
@@ -20,6 +21,10 @@
                 
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>about">About</a>
+                      </li>
+                      
+                      <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url();?>memberships/index">Memberships</a>
                       </li>
                 	
                     </ul>

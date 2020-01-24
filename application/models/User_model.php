@@ -19,6 +19,7 @@ class User_model extends CI_Model{
         
         //Insert user into database
         return $this->db->insert('users', $data);
+        
     }
     
     
@@ -39,10 +40,7 @@ class User_model extends CI_Model{
             return FALSE;
         }
         
-        //Insert user into database
-        return $this->db->insert('members', $data);
     }
-    
     
     
     // Check username exists
