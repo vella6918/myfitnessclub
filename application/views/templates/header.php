@@ -14,11 +14,7 @@
             
                   <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
-                	
-                      <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url();?>">Home</a>
-                      </li>
-                
+                	               
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>about">About</a>
                       </li>
@@ -42,9 +38,19 @@
                     <?php endif; ?>
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
+                      	
+                      	
+                      	<?php if($this->session->userdata('administrator') == 1) : ?>
+                      	<li>
+                      		<a class="nav-link" href="#">Admin Console</a>
+                      		
+                      	</li>
+                      	<?php endif; ?>
+                      	
                       	<li>
                         	<a class="nav-link" href="<?php echo base_url();?>users/logout">Logout</a>
                       	</li>
+                      	
                     <?php endif; ?>
                     </ul>
                     

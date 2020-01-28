@@ -63,12 +63,17 @@
                     //check for user id
                     if($user_id){
                         
+                        //check admin rights
+                        $administrator = $this->user_model->check_admin_rights($user_id);
+                                         
                         //Saving the data returned from user model to $user_data variable
                         $user_data = array(
                             'user_id' => $user_id,
                             'username' => $username,
+                            'administrator' => $administrator,
                             'logged_in' => TRUE
                         );
+                        
                         
                         //Set user data into a session
                         $this->session->set_userdata($user_data);
@@ -95,6 +100,7 @@
                 //unset user data session
                 $this->session->unset_userdata('logged_in');
                 $this->session->unset_userdata('username');
+                $this->session->unset_userdata('administrator');
                 $this->session->unset_userdata('user_id');
                 
                 
@@ -106,6 +112,8 @@
                 
             }//end of logout method
             
+            
+
             
             //Check Login
             public function check_login(){

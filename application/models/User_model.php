@@ -43,6 +43,17 @@ class User_model extends CI_Model{
     }
     
     
+    public function check_admin_rights ($user_id){
+        // get user
+        $query = $this->db->get_where('users', array('user_id' => $user_id));
+               
+        if($query->num_rows() == 1){
+            return $query->row(6)->administrator;
+        }
+        
+    }
+    
+    
     // Check username exists
     public function check_username_exists($username){
         $query = $this->db->get_where('users', array('username' => $username));
@@ -62,6 +73,22 @@ class User_model extends CI_Model{
         } else {
             return false;
         }
+    }
+    
+    
+    //Get all users
+    Public function get_users($user_id = False){
+        
+        //Get all memberships
+        if($user_id === FALSE){
+            $query = $this->db->get('users');
+            return $query->result_array();
+        }
+        
+        //Get a specific user
+        $query = $this->db->get_where('users', array('user_id' => $user_id_id));
+        return $query->row_array();
+        
     }
     
     
