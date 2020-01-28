@@ -12,17 +12,17 @@ class Paypal extends CI_Controller{
      
     function success(){
         // Get the transaction data
-        $paypalInfo = $this->input->get();
+        //$paypalInfo = $this->input->get();
 
-        $data['item_name']      = $paypalInfo['item_name'];
-        $data['item_number']    = $paypalInfo['item_number'];
-        $data['txn_id']         = $paypalInfo["tx"];
-        $data['payment_amt']    = $paypalInfo["amt"];
-        $data['currency_code']  = $paypalInfo["cc"];
-        $data['status']         = $paypalInfo["st"];
-        
-        // Pass the transaction data to view
-        $this->load->view('paypal/success', $data);
+        $data['item_name']      = $this->input->get('item_name');
+        $data['item_number']    = $this->input->get('item_number');
+        $data['txn_id']         = $this->input->get('tx');
+        $data['payment_amt']    = $this->input->get('amt');
+        $data['currency_code']  = $this->input->get('cc');
+        $data['status']         = $this->input->get('st');
+      
+        // Pass the transaction data to ipn method
+        $this->ipn();
     }
      
      function cancel(){
@@ -40,16 +40,26 @@ class Paypal extends CI_Controller{
 
             // Check whether the transaction is valid
             if($ipnCheck){
+                
                 // Insert the transaction data in the database
-                $data['user_id']        = $paypalInfo["custom"];
-                $data['product_id']        = $paypalInfo["item_number"];
-                $data['txn_id']            = $paypalInfo["txn_id"];
-                $data['payment_gross']    = $paypalInfo["mc_gross"];
-                $data['currency_code']    = $paypalInfo["mc_currency"];
-                $data['payer_email']    = $paypalInfo["payer_email"];
-                $data['payment_status'] = $paypalInfo["payment_status"];
+                $data= array(
+                    'user_id' => $this->input->post('custom'),
+                    'product_id' => $this->input->post('item_number'),
+                    'txn_id' => $this->input->post('txn_id'),
+                    'payment_gross' => $this->input->post('mc_gross'),
+                    'currency_code' => $this->input->post('mc_currency'),
+                    'payer_email' => $this->input->post('payer_email'),
+                    'payment_status' => 'Completed'
+               );
 
-                $this->product->insertTransaction($data);
+                //insert transaction into database 
+                $this->membership_model->insertTransaction($data);
+                
+                // set message in a session
+                $this->session->set_flashdata('successful_transaction', 'Your transaction was successful.');
+                
+                //redirect to homepage
+                redirect(base_url('home'));
             }
         }
     }

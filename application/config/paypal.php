@@ -8,10 +8,10 @@
 $config['sandbox'] = TRUE; // FALSE for live environment
 
 // PayPal business email
-$config['business'] = 'Your_PayPal_Email';
+$config['business'] = 'myfitnessclub-seller@gmail.com';
 
 // What is the default currency?
-$config['paypal_lib_currency_code'] = 'USD';
+$config['paypal_lib_currency_code'] = 'EUR';
 
 // Where is the button located at?
 $config['paypal_lib_button_path'] = 'assets/images/';
