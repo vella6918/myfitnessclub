@@ -31,4 +31,18 @@ class Membership_model extends CI_Model{
         return $insert?true:false;
     }
     
+    
+    //Create new membership
+    public function new_membership(){
+        //Membership data array
+        $data= array(
+            'name' => $this->input->post('name'),
+            'price' => $this->input->post('price'),
+        );
+        
+        //Insert user into database
+        return $this->db->insert('memberships', $data);
+    }
+    
+    
 }

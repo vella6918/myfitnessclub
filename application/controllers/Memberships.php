@@ -52,4 +52,33 @@ class Memberships extends CI_Controller {
         
     }
     
+    
+    
+    //create new membership
+    public function create() {
+        $data['title'] = 'New Membership';
+        
+        //setting errors
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('price', 'Price', 'required');
+
+        
+        if($this->form_validation->run() === FALSE){
+            //displaying the Add new membership page with errors
+            $this->load->view('templates/header');
+            $this->load->view('memberships/create', $data);
+            $this->load->view('templates/footer');
+        }else{
+            
+            //calling the new membership method in the membership model
+            $this->membership_model->new_membership();
+            
+            // set message in a session
+            $this->session->set_flashdata('membership_created', 'You have created a new membership');
+            
+            //redirect user to memberships
+            redirect('memberships/index');
+        }
+    }//end of method register
+
 }
