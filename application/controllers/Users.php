@@ -2,6 +2,16 @@
 
     class Users extends CI_Controller {
         
+        public function index(){
+            $data['title'] = 'All Users';
+            $data['users'] = $this->user_model->get_users();
+            
+            $this->load->view('templates/header');
+            $this->load->view('users/index', $data);
+            $this->load->view('templates/footer');
+        }
+        
+        
         //member register method
         public function register() {
             $data['title'] = 'Sign Up';
@@ -112,18 +122,7 @@
                 
             }//end of logout method
             
-            
 
-            
-            //Check Login
-            public function check_login(){
-                if(!$this->session->userdata('logged_in')){
-                    //set message
-                    $this->session->set_flashdata('user_notloggedin', 'You need to Login first.');
-                    
-                    redirect('user/login');
-                }
-            }//End of check login method
             
             //Check if username exists
             public function check_username_exists($username){
@@ -139,6 +138,7 @@
             }
             
             
+            
             // Check if email exists
             public function check_email_exists($email){
                 $this->form_validation->set_message('check_email_exists', 'That email is taken. Please choose a different one.');
@@ -148,6 +148,7 @@
                     return false;
                 }
             }
+            
             
             
             //Natanfelles (2016). CodeIgniter Strong Password Validation. Available at:https://forum.codeigniter.com/thread-66889.html (Accessed 24th January 2020)

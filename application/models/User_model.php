@@ -7,6 +7,7 @@ class User_model extends CI_Model{
         $this->load->database();
     }
     
+    
     public function register ($enc_password){
         //User data array
         $data= array(
@@ -79,7 +80,7 @@ class User_model extends CI_Model{
     //Get all users
     Public function get_users($user_id = False){
         
-        //Get all memberships
+        //Get all users
         if($user_id === FALSE){
             $query = $this->db->get('users');
             return $query->result_array();

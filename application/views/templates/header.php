@@ -22,17 +22,18 @@
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>memberships/index">Memberships</a>
                       </li>
-                	
+                      
+                                      	
                     </ul>
                     
-                    <ul  class="nav-item navbar-nav navbar-right">
+                    <ul  class="nav-item navbar-nav navbar-right nav">
                     
 					<?php if(!$this->session->userdata('logged_in')) : ?>
-                    	<li>
+                    	 <li class="nav-item">
                         	<a class="nav-link" href="<?php echo base_url();?>users/login">Login</a>
                       	</li>
                     
-                    	<li>
+                    	 <li class="nav-item">
                         	<a class="nav-link" href="<?php echo base_url();?>users/register">Register</a>
                       	</li>
                     <?php endif; ?>
@@ -41,13 +42,10 @@
                       	
                       	
                       	<?php if($this->session->userdata('administrator') == 1) : ?>
-                      	<li>
-                      		<a class="nav-link" href="#">Admin Console</a>
-                      		
-                      	</li>
+                      		<a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>                 			
                       	<?php endif; ?>
                       	
-                      	<li>
+                      	 <li class="nav-item">
                         	<a class="nav-link" href="<?php echo base_url();?>users/logout">Logout</a>
                       	</li>
                       	
@@ -56,15 +54,14 @@
                     
                    </div>
         </nav>
-        
+
 
         
         <br>
     
     
     
-    
-        <div class="container">
+    	<div class="container">
         
         <!--  Display Flash Messages -->
         
