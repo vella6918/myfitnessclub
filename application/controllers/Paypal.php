@@ -1,3 +1,12 @@
+ <!--  
+ 
+ * @author      CodexWorld
+ * @license     http://www.codexworld.com/license/
+ * @link        http://www.codexworld.com
+ 
+ -->
+
+
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Paypal extends CI_Controller{
