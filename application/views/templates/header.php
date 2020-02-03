@@ -14,10 +14,20 @@
             
                   <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
+                    
+                    <?php if(!$this->session->userdata('logged_in')) : ?>
                 	               
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>about">About</a>
                       </li>
+                      
+                    <?php endif; ?>
+                    
+                    <?php if($this->session->userdata('logged_in')) : ?>
+                        <?php if($this->session->userdata('administrator') == 1) : ?>
+                          		<a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>                 			
+                         <?php endif; ?>
+                     <?php endif; ?>
                       
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>memberships/index">Memberships</a>
@@ -39,12 +49,7 @@
                     <?php endif; ?>
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
-                      	
-                      	
-                      	<?php if($this->session->userdata('administrator') == 1) : ?>
-                      		<a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>                 			
-                      	<?php endif; ?>
-                      	
+
                       	 <li class="nav-item">
                         	<a class="nav-link" href="<?php echo base_url();?>users/logout">Logout</a>
                       	</li>
@@ -79,6 +84,16 @@
             
             <?php if($this->session->flashdata('successful_transaction')):?>
             <?php $flash_message = $this->session->flashdata('successful_transaction');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('membership_created')):?>
+            <?php $flash_message = $this->session->flashdata('membership_created');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('membership_deleted')):?>
+            <?php $flash_message = $this->session->flashdata('membership_deleted');?>
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             

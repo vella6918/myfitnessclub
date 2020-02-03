@@ -10,14 +10,27 @@ class Memberships extends CI_Controller {
         $this->load->model('membership_model');
     }
     
+    
+    //default view method for memberships
     public function index(){
         $data['title'] = 'Memberships';
         $data['memberships'] = $this->membership_model->get_memberships();
         
         $this->load->view('templates/header');
-        $this->load->view('memberships/index', $data);
+        
+        //check if user is administrator
+        if(!$this->session->userdata('administrator') == 1){
+            //load index for normal user
+            $this->load->view('memberships/index', $data);
+        }else{
+            
+            //load admin view for admin user
+            $this->load->view('memberships/admin_view', $data);
+        }
         $this->load->view('templates/footer');
-    }
+    }//end of index method
+    
+    
     
     //Buy Membership
     public function buy($membership_id){
@@ -50,7 +63,7 @@ class Memberships extends CI_Controller {
         // Render paypal form
         $this->paypal_lib->paypal_auto_form();
         
-    }
+    }//end of buy method
     
     
     
@@ -80,5 +93,36 @@ class Memberships extends CI_Controller {
             redirect('memberships/index');
         }
     }//end of method register
+    
+    
+    //Method to delete memebership
+    public function detele($membership_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //check if user is administrator
+        if(!$this->session->userdata('administrator') == 1){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }
+        
+        //if user admin go to delete method in the membership model class
+        $this->membership_model->delete_membership($membership_id);
+            
+        
+        // Set message
+        $this->session->set_flashdata('membership_deleted', 'Your post has been deleted');
+        
+        //redirect
+        redirect('memberships');
+     
+    }//end of delete method
+    
+    
 
 }
+    
+    
+    

@@ -7,6 +7,8 @@ class Membership_model extends CI_Model{
         $this->transTable = 'payments';
     }
     
+    
+    
     //Get all memberships
     Public function get_memberships($membership_id = False){
         
@@ -20,16 +22,27 @@ class Membership_model extends CI_Model{
         $query = $this->db->get_where('memberships', array('membership_id' => $membership_id));
         return $query->row_array();
         
-    }
+    }//end of get_memberships method
+    
+    
+    
     
     /*
      * Insert data in the database
      * @param data array
+     * 
+     * 
+     * @author      CodexWorld
+     * @license     http://www.codexworld.com/license/
+     * @link        http://www.codexworld.com
+     * 
      */
     public function insertTransaction($data){
         $insert = $this->db->insert($this->transTable,$data);
         return $insert?true:false;
-    }
+    }//end of insertTransaction method
+    
+    
     
     
     //Create new membership
@@ -42,6 +55,15 @@ class Membership_model extends CI_Model{
         
         //Insert user into database
         return $this->db->insert('memberships', $data);
+    }//end of create_membership method
+    
+    
+    //Delete a membership
+    public function delete_membership($membership_id){
+        $this->db->where('membership_id', $membership_id);
+        $this->db->delete('memberships');
+        
+        return true;
     }
     
     
