@@ -45,6 +45,9 @@ class Membership_model extends CI_Model{
     
     
     
+    
+    
+    
     //Create new membership
     public function new_membership(){
         //Membership data array
@@ -58,13 +61,42 @@ class Membership_model extends CI_Model{
     }//end of create_membership method
     
     
+    
+    
+    
+    
     //Delete a membership
     public function delete_membership($membership_id){
         $this->db->where('membership_id', $membership_id);
         $this->db->delete('memberships');
         
         return true;
+    }//end of delete_membership method
+    
+    
+    
+    
+    
+    
+    
+    
+    //update membership method
+    public function update_membership($membership_id){
+        
+        //Membership data array
+        $data= array(
+            'name' => $this->input->post('name'),
+            'price' => $this->input->post('price'),
+        );
+        
+        //get membership
+        $this->db->where('membership_id', $membership_id);
+        //Update membership into database
+        $this->db->update('memberships', $data);
+        
+        return true;
     }
+    
     
     
 }

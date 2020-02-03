@@ -97,6 +97,13 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('membership_updated')):?>
+            <?php $flash_message = $this->session->flashdata('membership_updated');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            
+            
             <?php if($this->session->flashdata('login_failed')):?>
             <?php $flash_message = $this->session->flashdata('login_failed');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
@@ -109,6 +116,11 @@
             
             <?php if($this->session->flashdata('user_notloggedin')):?>
             <?php $flash_message = $this->session->flashdata('user_notloggedin');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('membership_failed_to_updat')):?>
+            <?php $flash_message = $this->session->flashdata('membership_failed_to_updat');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             

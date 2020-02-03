@@ -92,7 +92,7 @@ class Memberships extends CI_Controller {
             //redirect user to memberships
             redirect('memberships/index');
         }
-    }//end of method register
+    }//end of method create
     
     
     //Method to delete memebership
@@ -121,6 +121,73 @@ class Memberships extends CI_Controller {
     }//end of delete method
     
     
+    //Method to edit membership
+    public function edit($membership_id){
+        
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //check if user is administrator
+        if(!$this->session->userdata('administrator') == 1){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }
+        
+        //Get Membership
+        $data['membership'] = $this->membership_model->get_memberships($membership_id);
+        
+        
+        //Show error 404 if memnership does not exist in database
+        if(empty($data['membership'])){
+            show_404();
+        }
+        
+        
+        //set page title
+        $data['title'] = 'Edit Membership';
+        
+        //load views
+        $this->load->view('templates/header');
+        $this->load->view('memberships/edit', $data);
+        $this->load->view('templates/footer');
+        
+        
+    }//end of edit membership method
+    
+    
+    //update membership method
+    public function update($membership_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //check if user is administrator
+        if(!$this->session->userdata('administrator') == 1){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }
+        
+       
+        //load update_membership method from membership_model
+        $update = $this->membership_model->update_membership($membership_id);
+        
+        if($update){
+            // Set message
+            $this->session->set_flashdata('membership_updated', 'Your membership has been updated');
+            
+            //redirect user
+            redirect('memberships');
+        }else{
+            // Set message
+            $this->session->set_flashdata('membership_failed_to_update', 'Your membership has failed to update');
+            
+            //redirect user
+            redirect('memberships');
+        }
+    }
 
 }
     
