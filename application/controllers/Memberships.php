@@ -1,4 +1,4 @@
-<?php 
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Memberships extends CI_Controller {
     
@@ -7,7 +7,6 @@ class Memberships extends CI_Controller {
         
         // Load paypal library & membership model
         $this->load->library('paypal_lib');
-        $this->load->model('membership_model');
     }
     
     
