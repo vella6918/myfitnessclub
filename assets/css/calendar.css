@@ -1,0 +1,42 @@
+.calendar{
+	font.family: calibri; font-size: 16px;
+}
+
+table.calendar{
+	margin: auto; border-collapse: collapse;
+}
+
+.calendar .days td{
+	width: 100px; height: 100px; padding: 5px;
+	border: 2px solid #999;
+	vertical-align: top;
+	background-color: #D3D3D3;
+	
+}
+
+.week_days{
+	font.family: calibri; font-size: 20px;
+	width: 100px; height: 40px; padding: 2px;
+}
+
+.cal_heading{
+	font.family: calibri; font-size: 20px;
+	text-align: center;
+}
+
+.next{
+	text-align: right;
+}
+
+.previous{
+	text-align: left;
+}
+
+.calendar .days td:hover {
+	background-color: #FFF;
+}
+
+.calendar .highlight {
+	font-weigth: bold; 
+	color: #00F;
+}
