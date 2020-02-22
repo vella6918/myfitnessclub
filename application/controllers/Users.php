@@ -136,7 +136,7 @@
                 //unset user data session
                 $this->session->unset_userdata('logged_in');
                 $this->session->unset_userdata('username');
-                $this->session->unset_userdata('administrator');
+                $this->session->unset_userdata('role');
                 $this->session->unset_userdata('user_id');
                 
                 

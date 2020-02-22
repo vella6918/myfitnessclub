@@ -34,7 +34,7 @@
                     <?php endif; ?>
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
-                        <?php if($this->session->userdata('role') == 1) : ?>
+                        <?php if($this->session->userdata('role') == 1): ?>
                           		<a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>                 			
                          <?php endif; ?>
                      <?php endif; ?>
@@ -43,6 +43,9 @@
                         <a class="nav-link" href="<?php echo base_url();?>memberships/index">Memberships</a>
                       </li>
                       
+                      <li class="nav-item">
+                        <a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
+                      </li>
                                       	
                     </ul>
                     

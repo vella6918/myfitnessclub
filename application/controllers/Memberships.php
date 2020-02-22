@@ -18,13 +18,12 @@ class Memberships extends CI_Controller {
         $this->load->view('templates/header');
         
         //check if user is administrator
-        if($this->session->userdata('role') != 1){
-            //load index for normal user
-            $this->load->view('memberships/index', $data);
-        }else{
-            
+        if($this->session->userdata('role') == 1){
             //load admin view for admin user
             $this->load->view('memberships/admin_view', $data);
+        }else{            
+            //load index for normal user
+            $this->load->view('memberships/index', $data);
         }
         $this->load->view('templates/footer');
     }//end of index method
