@@ -8,14 +8,26 @@ class User_model extends CI_Model{
     }
     
     
-    public function register ($enc_password){
+     
+    //get all user roles
+    public function get_roles(){
+        $this->db->order_by('role_id', 'DESC');
+        $query = $this->db->get('role');
+        return $query->result_array();
+    }
+    
+    
+    
+    //indert user data
+    public function register ($enc_password, $role){
         //User data array
         $data= array(
             'name' => $this->input->post('name'),
             'surname' => $this->input->post('surname'),
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
-            'password' => $enc_password
+            'password' => $enc_password,
+            'role_id' => $role
         );
         
         //Insert user into database
@@ -24,7 +36,7 @@ class User_model extends CI_Model{
     }
     
     
-    
+    //login method
     public function login ($username, $password){
         
         //Validate
@@ -43,17 +55,7 @@ class User_model extends CI_Model{
         
     }
     
-    
-    public function check_admin_rights ($user_id){
-        // get user
-        $query = $this->db->get_where('users', array('user_id' => $user_id));
-               
-        if($query->num_rows() == 1){
-            return $query->row(6)->administrator;
-        }
-        
-    }
-    
+
     
     // Check username exists
     public function check_username_exists($username){
@@ -76,6 +78,8 @@ class User_model extends CI_Model{
         }
     }
     
+
+    
     
     //Get all users
     Public function get_users($user_id = False){
@@ -87,10 +91,61 @@ class User_model extends CI_Model{
         }
         
         //Get a specific user
-        $query = $this->db->get_where('users', array('user_id' => $user_id_id));
+        $query = $this->db->get_where('users', array('user_id' => $user_id));
         return $query->row_array();
         
     }
+    
+    
+    //disable user
+    public function disable_user($user_id){
+        
+        //Membership data array
+        $data= array(
+            'disabled' => 1
+        );
+        
+        //get membership
+        $this->db->where('user_id', $user_id);
+        //Update membership into database
+        $this->db->update('users', $data);
+        
+        return true;
+    }
+    
+    //enable user
+    public function enable_user($user_id){
+        
+        //Membership data array
+        $data= array(
+            'disabled' => 0
+        );
+        
+        //get membership
+        $this->db->where('user_id', $user_id);
+        //Update membership into database
+        $this->db->update('users', $data);
+        
+        return true;
+    }
+    
+    
+    //reset password
+    public function reset_password($user_id, $enc_password){
+        
+        
+        $data= array(
+            'password' => $enc_password
+        );
+        
+        //get user
+        $this->db->where('user_id', $user_id);
+        //Update membership into database
+        $this->db->update('users', $data);
+        
+        return true;
+    }
+    
     
     
 }

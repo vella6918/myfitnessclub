@@ -5,6 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['memberships'] = 'memberships/index';
 
 
+//users
+$route['users'] = 'users/index';
+$route['login'] = 'users/login';
+
 //pages
 $route['default_controller'] = 'pages/view';
 $route['(:any)'] = 'pages/view/$1';

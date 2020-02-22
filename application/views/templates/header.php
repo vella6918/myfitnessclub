@@ -34,7 +34,7 @@
                     <?php endif; ?>
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
-                        <?php if($this->session->userdata('administrator') == 1) : ?>
+                        <?php if($this->session->userdata('role') == 1) : ?>
                           		<a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>                 			
                          <?php endif; ?>
                      <?php endif; ?>
@@ -69,7 +69,6 @@
                     
                    </div>
         </nav>
-
 
         
         <br>
@@ -112,6 +111,22 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('user_disable')):?>
+            <?php $flash_message = $this->session->flashdata('user_disable');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('user_enabled')):?>
+            <?php $flash_message = $this->session->flashdata('user_enabled');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('user_password_updated')):?>
+            <?php $flash_message = $this->session->flashdata('user_password_updated');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>
@@ -131,6 +146,26 @@
             
             <?php if($this->session->flashdata('membership_failed_to_updat')):?>
             <?php $flash_message = $this->session->flashdata('membership_failed_to_updat');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('user_disable_failed')):?>
+            <?php $flash_message = $this->session->flashdata('user_disable_failed');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('user_enable_failed')):?>
+            <?php $flash_message = $this->session->flashdata('user_enable_failed');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('user_disabled')):?>
+            <?php $flash_message = $this->session->flashdata('user_disabled');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('user_password_failed_update')):?>
+            <?php $flash_message = $this->session->flashdata('user_password_failed_update');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             

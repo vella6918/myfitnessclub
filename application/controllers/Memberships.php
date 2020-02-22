@@ -18,7 +18,7 @@ class Memberships extends CI_Controller {
         $this->load->view('templates/header');
         
         //check if user is administrator
-        if(!$this->session->userdata('administrator') == 1){
+        if($this->session->userdata('role') != 1){
             //load index for normal user
             $this->load->view('memberships/index', $data);
         }else{
@@ -66,8 +66,25 @@ class Memberships extends CI_Controller {
     
     
     
+    
+    
     //create new membership
     public function create() {
+        
+        
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //check if user is administrator
+        if($this->session->userdata('role') != 1){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }
+        
+        
+        
         $data['title'] = 'New Membership';
         
         //setting errors
@@ -94,6 +111,8 @@ class Memberships extends CI_Controller {
     }//end of method create
     
     
+    
+    
     //Method to delete memebership
     public function detele($membership_id){
         //check login
@@ -102,7 +121,7 @@ class Memberships extends CI_Controller {
         }
         
         //check if user is administrator
-        if(!$this->session->userdata('administrator') == 1){
+        if($this->session->userdata('role') != 1){
             //if user is not admin error 404 will shpw up
             show_404();
         }
@@ -120,6 +139,9 @@ class Memberships extends CI_Controller {
     }//end of delete method
     
     
+    
+    
+    
     //Method to edit membership
     public function edit($membership_id){
         
@@ -129,7 +151,7 @@ class Memberships extends CI_Controller {
         }
         
         //check if user is administrator
-        if(!$this->session->userdata('administrator') == 1){
+        if($this->session->userdata('role') != 1){
             //if user is not admin error 404 will shpw up
             show_404();
         }
@@ -156,6 +178,10 @@ class Memberships extends CI_Controller {
     }//end of edit membership method
     
     
+    
+    
+    
+    
     //update membership method
     public function update($membership_id){
         //check login
@@ -164,7 +190,7 @@ class Memberships extends CI_Controller {
         }
         
         //check if user is administrator
-        if(!$this->session->userdata('administrator') == 1){
+        if($this->session->userdata('role') != 1){
             //if user is not admin error 404 will shpw up
             show_404();
         }

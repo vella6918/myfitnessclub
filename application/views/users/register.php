@@ -34,6 +34,18 @@
         		<label>Confirm Password</label>
         		<input type="password" class="form-control" name="password2" placeholder="Confirm Password" required autofocus>
         	</div>
+        	
+        	<?php if($this->session->userdata('role') == 1) : ?>
+        	<div class="form-group">
+        		<label>Role</label>
+        		<select name="role_id" class="form-control">
+        			<?php foreach($roles as $role): ?>
+        				<option value="<?php echo $role['role_id'] ?>"><?php echo $role['role']; ?></option>
+        			<?php endforeach;?>
+        		</select>
+        	</div>
+        	<?php endif;?>
+        	
         	<button type="submit" class="btn btn-primary btn-block">Register</button>
         	
         </div>
