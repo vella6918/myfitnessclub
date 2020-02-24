@@ -60,8 +60,8 @@
                 // set message in a session
                 $this->session->set_flashdata('user_registered', 'You are now registered and can Login.');
                 
-                //redirect user to home page after registration is successful
-                redirect('users/login');
+                //redirect user to login
+                redirect('login');
             }
         }//end of method register
         
@@ -402,6 +402,57 @@
                         redirect('users');
                     }
                 }
+            }//end of update_password method
+            
+            
+            //edit user details
+            public function edit($user_id){
+                //check login
+                if(!$this->session->userdata('logged_in')){
+                    redirect('users/login');
+                }
+                
+                //check if user is administrator or user id in session is the same as the current user id
+                if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $user_id){
+                    //get user details
+                    $data['user'] = $this->user_model->get_users($user_id);
+                    
+                    
+                    //if user details are not found show 404
+                    if(empty($data['user'])){
+                        show_404();
+                    }
+                    
+                    //set title
+                    $data['title'] = 'Edit User';
+                    
+                    //load pages from views
+                    $this->load->view('templates/header');
+                    $this->load->view('users/edit', $data);
+                    $this->load->view('templates/footer');
+                    
+                }else{
+                    //if user is not admin error 404 will shpw up
+                    show_404();
+                }
+                
+                
+            }//end of edit method
+            
+            
+            //update user details
+            public function update($user_id){
+                //check login
+                if(!$this->session->userdata('logged_in')){
+                    redirect('users/login');
+                }
+                
+                $this->user_model->update($user_id);
+                
+                // Set message
+                $this->session->set_flashdata('user_update', 'User details updated successfully.');
+                
+                redirect('users');
             }
             
 

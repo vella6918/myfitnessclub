@@ -86,11 +86,13 @@ class User_model extends CI_Model{
         
         //Get all users
         if($user_id === FALSE){
+            $this->db->join('role','role.role_id = users.role_id');
             $query = $this->db->get('users');
             return $query->result_array();
         }
         
         //Get a specific user
+        $this->db->join('role','role.role_id = users.role_id');
         $query = $this->db->get_where('users', array('user_id' => $user_id));
         return $query->row_array();
         
@@ -145,6 +147,27 @@ class User_model extends CI_Model{
         
         return true;
     }
+    
+    
+    //update user details
+    public function update($user_id){
+        
+        //User data array
+        $data= array(
+            'name' => $this->input->post('name'),
+            'surname' => $this->input->post('surname'),
+            'username' => $this->input->post('username'),
+            'email' => $this->input->post('email'),
+            'role_id' => $this->input->post('role_id')
+        );
+        
+        //get user
+        $this->db->where('user_id', $user_id);
+        //Update user details
+        $this->db->update('users', $data);
+        
+        return true;
+    }//end of update_user method
     
     
     

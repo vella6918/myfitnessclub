@@ -132,6 +132,10 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('user_update')):?>
+            <?php $flash_message = $this->session->flashdata('user_update');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
             
             
             

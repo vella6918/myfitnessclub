@@ -54,6 +54,10 @@
                   <td><b>Username: </b></td>
                   <td><?php echo $user['username'];?></td>
               </tr>
+               <tr>
+                  <td><b>Role: </b></td>
+                  <td><?php echo $user['role'];?></td>
+              </tr>
               <tr>
                   <td><b>Disabled: </b></td>
                   <td>
