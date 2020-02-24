@@ -1,9 +1,6 @@
 <?php 
     //echo errors
     echo validation_errors();
-    
-    echo $user['role_id'];
-    echo $user['role'];
 ?>
 
 <?php echo form_open('users/update/'.$user['user_id']);?>
