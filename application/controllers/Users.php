@@ -3,6 +3,17 @@
     class Users extends CI_Controller {
         
         public function index(){
+            //check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
+            //check if user is administrator
+            if($this->session->userdata('role') != 1){
+                //if user is not admin error 404 will shpw up
+                show_404();
+            }
+            
             $data['title'] = 'All Users';
             $data['users'] = $this->user_model->get_users();
             
