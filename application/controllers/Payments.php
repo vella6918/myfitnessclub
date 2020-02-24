@@ -12,16 +12,26 @@ class Payments extends CI_Controller {
         
        
         $data['title'] = 'All Payments';
-        $data['payments'] = $this->payment_model->get_payments();
+        
         
         
         $this->load->view('templates/header');
         
         //check if user is administrator
         if($this->session->userdata('role') == 1){
+            
+            //get all payments
+            $data['payments'] = $this->payment_model->get_payments();
+            
             //load admin view for admin user
             $this->load->view('payments/index', $data);
-        }else{
+        }
+        //check if user is a member
+        elseif($this->session->userdata('role') == 3){
+            
+            //get all payments related to the current member
+            $data['payments'] = $this->payment_model->get_user_payments($this->session->userdata('user_id'));
+            
             //load index for normal user
             $this->load->view('payments/myPayments', $data);
         }

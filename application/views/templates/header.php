@@ -34,17 +34,20 @@
                     <?php endif; ?>
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
+                    
+                    	<li class="nav-item">
+                       	 	<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
+                      	</li>
+                      	
                         <?php if($this->session->userdata('role') == 1): ?>
-                          		<a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>                 			
+                            <li class="nav-item">
+                              <a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>
+                             </li>                 			
                          <?php endif; ?>
                      <?php endif; ?>
                       
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>memberships/index">Memberships</a>
-                      </li>
-                      
-                      <li class="nav-item">
-                        <a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
                       </li>
                                       	
                     </ul>
