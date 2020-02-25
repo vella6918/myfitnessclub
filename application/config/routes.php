@@ -7,6 +7,9 @@ $route['memberships'] = 'memberships/index';
 //payments
 $route['payments'] = 'payments/index';
 
+//exercises
+$route['exercises'] = 'exercises/index';
+
 //users
 $route['users'] = 'users/index';
 $route['login'] = 'users/login';

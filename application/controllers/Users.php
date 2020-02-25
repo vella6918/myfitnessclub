@@ -230,7 +230,7 @@
                 return TRUE;
             }
             
-            
+            //view a specific user
             public function view ($user_id){
                 
                 //check login

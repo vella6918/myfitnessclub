@@ -137,6 +137,21 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('exercise_deleted')):?>
+            <?php $flash_message = $this->session->flashdata('exercise_deleted');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('exercise_created')):?>
+            <?php $flash_message = $this->session->flashdata('exercise_created');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('exercise_updated')):?>
+            <?php $flash_message = $this->session->flashdata('exercise_updated');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>
@@ -176,6 +191,11 @@
             
             <?php if($this->session->flashdata('user_password_failed_update')):?>
             <?php $flash_message = $this->session->flashdata('user_password_failed_update');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('exercise_failed_to_update')):?>
+            <?php $flash_message = $this->session->flashdata('exercise_failed_to_update');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             

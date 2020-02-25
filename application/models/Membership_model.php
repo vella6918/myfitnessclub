@@ -53,7 +53,7 @@ class Membership_model extends CI_Model{
         //Membership data array
         $data= array(
             'name' => $this->input->post('name'),
-            'price' => $this->input->post('price'),
+            'price' => $this->input->post('price')
         );
         
         //Insert user into database

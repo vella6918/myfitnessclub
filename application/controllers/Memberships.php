@@ -211,9 +211,9 @@ class Memberships extends CI_Controller {
             //redirect user
             redirect('memberships');
         }
-    }
+    }//end of update method
 
-}
+}//end of class
     
     
-    
+    ?>
