@@ -377,15 +377,13 @@
                     show_404();
                 }
                 
-                
+                                
                 $this->form_validation->set_rules('password', 'Password', 'required|callback_valid_password');
                 $this->form_validation->set_rules('password2', 'Confirm Password', 'required', 'matches[password]');
                 
                 if($this->form_validation->run() === FALSE){
                     //displaying the register page with errors
-                    $this->load->view('templates/header');
-                    $this->load->view('users/resetPassword', $data);
-                    $this->load->view('templates/footer');
+                    redirect('users/resetPassword/'.$user_id);
                 }else{
                 
                     //encript password

@@ -17,7 +17,7 @@
 	<body>
 	
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                  <a class="navbar-brand" href="<?php echo base_url();?>">My Fitness Club</a>
+                  <a class="navbar-brand" href="<?php echo base_url();?>calendar">My Fitness Club</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>

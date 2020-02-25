@@ -4,11 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //memberships
 $route['memberships'] = 'memberships/index';
 
+//calendar
+$route['calendar'] = 'calendar/index';
+
 //payments
 $route['payments'] = 'payments/index';
 
 //exercises
 $route['exercises'] = 'exercises/index';
+
+//memberships
+$route['workouts'] = 'workouts/index';
 
 //users
 $route['users'] = 'users/index';
