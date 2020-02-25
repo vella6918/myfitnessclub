@@ -35,15 +35,23 @@
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
                     
-                    	<li class="nav-item">
-                       	 	<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
-                      	</li>
-                      	
+                    	                    	
                         <?php if($this->session->userdata('role') == 1): ?>
                             <li class="nav-item">
                               <a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>
-                             </li>                 			
+                             </li>
+                             
+                             <li class="nav-item">
+                       	 		<a class="nav-link" href="<?php echo base_url();?>exercises">Exercises</a>
+                      		</li>                 			
                          <?php endif; ?>
+                         
+                         <li class="nav-item">
+                       	 	<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
+                      	</li>
+                      	
+                      	
+                         
                      <?php endif; ?>
                       
                       <li class="nav-item">

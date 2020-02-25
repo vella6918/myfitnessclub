@@ -60,8 +60,14 @@
                 // set message in a session
                 $this->session->set_flashdata('user_registered', 'You are now registered and can Login.');
                 
-                //redirect user to login
-                redirect('login');
+                
+                //check login
+                if(!$this->session->userdata('logged_in')){
+                    redirect('login');
+                }else{
+                    redirect('users');
+                }
+                
             }
         }//end of method register
         
