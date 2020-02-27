@@ -3,17 +3,14 @@
     		<div class="col-lg-6">
     			<h1><?php echo $title;?></h1>
     		</div>
-    		<div class="col-lg-6">
-    			<a href="<?php echo base_url().'memberships/create';?>" class="btn btn-success	 float-right">Add New</a>
-    		</div>
 		</div>
 		
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">Membership Name</th>
               <th scope="col">Price</th>
-              <th scope="col"> </th>
+              <th scope="col"> <a href="<?php echo base_url().'memberships/create';?>" class="btn btn-success btn-sm">Add New</a></th>
             </tr>
           </thead>
           <tbody>

@@ -4,8 +4,8 @@
     			<h1><?php echo $title;?></h1>
 		</div>
 		
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">Name</th>
               <th scope="col">Surname</th>

@@ -2,8 +2,8 @@
 
 
 <div>
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">User Details</th>
               <th>
@@ -76,8 +76,8 @@
 </div>
 </br>
 <div>
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">Membership Details</th>
               <th>

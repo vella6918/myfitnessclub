@@ -34,7 +34,8 @@
                     <?php endif; ?>
                     
                     <?php if($this->session->userdata('logged_in')) : ?>
-                    
+                    	
+                    	
                     	                    	
                         <?php if($this->session->userdata('role') == 1): ?>
                             <li class="nav-item">
@@ -49,6 +50,11 @@
                          <li class="nav-item">
                        	 	<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
                       	</li>
+                      	
+                      	
+                      	<li class="nav-item">
+                              <a class="nav-link" href="<?php echo base_url();?>workouts">Workouts</a>
+                        </li>
                       	
                       	
                          

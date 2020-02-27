@@ -1,11 +1,11 @@
 
 		
 		<div class="row">
-    			<h1><?php echo $title;?></h1>
+    		<h1><?php echo $title;?></h1>
 		</div>
 		
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">Exercise ID</th>
               <th scope="col">Exercise</th>

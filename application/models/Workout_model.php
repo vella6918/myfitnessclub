@@ -43,7 +43,7 @@ class Workout_model extends CI_Model{
     //get all users for a workout
     public function get_users_workout($workout_id){
         $this->db->join('workouts','workouts.workout_id = workout_user.workout_id');
-        $this->db->join('users','users.user_id = workout_user.user_id');
+        $this->db->join('users','users.user_id = workout_user.shared_with');
         $query = $this->db->get_where('workout_user', array('workout_user.workout_id' => $workout_id));
         return $query->result_array();
     }//end of get_users_workout method

@@ -2,8 +2,8 @@
 
 
 <div>
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
               <th scope="col">Exercise Details</th>
               <th>

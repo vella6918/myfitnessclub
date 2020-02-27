@@ -2,16 +2,17 @@
 
 
 <div>
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
-              <th scope="col">Workout Details</th>
+              <th scope="col">Workout details:</th>
               <th>
             	
               	<!-- if user is admin or the same person that created the workout the display and edit button will be displayed -->
               	<?php if($this->session->userdata('role') == 1 ||  $this->session->userdata('user_id') == $workout['created_by']):?>
-              	<a href="<?php echo base_url().'workouts/edit/'.$workout['workout_id'];?>" class="btn btn-warning btn-sm">Edit</a>&nbsp;&nbsp;
-              	<a href="<?php echo base_url().'users/delete/'.$workout['workout_id'];?>" class="btn btn-danger btn-sm">Delete</a>
+              	<a href="<?php echo base_url().'workouts/share/'.$workout['workout_id'];?>" class="btn btn-danger btn-sm">Share</a>
+              	<a href="<?php echo base_url().'workouts/edit/'.$workout['workout_id'];?>" class="btn btn-warning btn-sm">Edit</a>
+              	<a href="<?php echo base_url().'workouts/delete/'.$workout['workout_id'];?>" class="btn btn-danger btn-sm">Delete</a>
               	<?php endif;?>
               	
               </th>
@@ -41,28 +42,26 @@
 </div>
 </br></br>
 <div>
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
-              <th scope="col">Exercises Details:</th>
+              <th scope="col">Exercises details:</th>
+              <th></th>
               <th></th>
             </tr>
           </thead>
           <tbody>
+          
+          		<?php $counter = 1;?>
               
                   <?php foreach($exercises as $exercise): ?>
                   <tr>
-                      <td><b>Exercise Name:</b></td>
-                      <td><?php echo $exercise['exercise'];?></td>
+                      <td><b>Exercise <?php echo $counter;?>:</b> <?php echo $exercise['exercise'];?></td>
+                      <td><b>Sets:</b> <?php echo $exercise['sets'];?></td>
+                      <td><b>Reps:</b> <?php echo $exercise['reps'];?></td>
                   </tr>
-                  <tr>
-                      <td><b>Sets:</b></td>
-                      <td><?php echo $exercise['sets'];?></td>
-                  </tr>
-                  <tr>
-                      <td><b>Reps:</b></td>
-                      <td><?php echo $exercise['reps'];?></td>
-                  </tr>
+                  
+                  <?php $counter++;?>
                   <?php endforeach;?>
           </tbody>
       </table>
@@ -72,10 +71,10 @@
 <!-- display only if user is admin or trainer-->
 <?php if($this->session->userdata('role') == 1 ||  $this->session->userdata('role') == 2):?>
 <div>
-		<table class="table table-hover">
-          <thead>
+		<table class="table table-sm">
+          <thead class="thead-dark">
             <tr>
-              <th scope="col">Shared With:</th>
+              <th scope="col">Shared with:</th>
               <th></th>
             </tr>
           </thead>
@@ -84,7 +83,8 @@
                   <?php foreach($users as $user): ?>
                   <tr>
                       
-                      <td><a href="<?php echo base_url().'users/view/'.$user['user_id']; ?>"><?php echo $user['username'];?></a></td>
+                      <td><b>Username: </b><a href="<?php echo base_url().'users/view/'.$user['user_id']; ?>"><?php echo $user['username'];?></a></td>
+                      <td><b>Full Name: </b><?php echo $user['name'];?> <?php echo $user['surname'];?></td>
                   </tr>
                   <?php endforeach;?>
           </tbody>
@@ -92,5 +92,4 @@
 </div>
 <?php endif;?>
 </br></br>
-
 
