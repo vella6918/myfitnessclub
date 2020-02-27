@@ -1,20 +1,6 @@
-		
-		
-		
-		
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="<?php echo base_url().'my_workouts';?>">My Workouts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url().'public';?>">Public Workouts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Favourites</a>
-          </li>
-        </ul>
-        
-
+		<div class="row">
+    			<h1><?php echo $title;?></h1>
+		</div>
 		
 		<table class="table table-sm">
           <thead class="thead-dark">
@@ -22,7 +8,7 @@
               <th scope="col">Workout ID</th>
               <th scope="col">Workout Title</th>
               <th scope="col">Owner</th>
-              <th><a href="<?php echo base_url().'workouts/create';?>" class="btn btn-success btn-sm ">Add New Workout</a></th>
+              <th><a href="<?php echo base_url().'my_workouts';?>" class="btn btn-success btn-sm ">Go Back to my workouts</a></th>
             </tr>
           </thead>
           <tbody>

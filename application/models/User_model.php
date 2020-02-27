@@ -123,9 +123,9 @@ class User_model extends CI_Model{
             'disabled' => 0
         );
         
-        //get membership
+        //get user
         $this->db->where('user_id', $user_id);
-        //Update membership into database
+        //Update user into database
         $this->db->update('users', $data);
         
         return true;

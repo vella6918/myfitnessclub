@@ -19,17 +19,6 @@ class Workout_model extends CI_Model{
         
     }//end of get_workouts method
     
-    /*
-    //Get workouts of a user
-    Public function get_my_workouts($user_id){
-             
-        //Get a specific exercise
-        $this->db->join('users','users.user_id = workouts.created_by');
-        $query = $this->db->get_where('workouts', array('workouts.created_by' => $user_id));
-        return $query->row_array();
-        
-    }//end of get_workouts method
-    */
     
     //get all exercises for a workout
     public function get_exercises_workout($workout_id){
@@ -48,6 +37,35 @@ class Workout_model extends CI_Model{
         return $query->result_array();
     }//end of get_users_workout method
     
+    
+    //get current user's workouts
+    public function get_my_workouts($user_id){
+        $query = $this->db->get_where('workouts', array('created_by' => $user_id));
+        return  $query->result_array();
+    }
+    
+    
+    //get public workouts
+    public function get_public_workouts($user_id = FALSE){
+        /*
+        $query=$this->db->select('*')->from('workouts')
+        ->group_start()
+        ->where('public', '1')
+        ->where_not_in('created_by', $user_id)
+        ->group_end()
+        ->get();
+        */
+        $this->db->select('*');
+        $this->db->from('workouts');
+        $this->db->join('users','users.user_id = workouts.created_by');
+        $this->db->where('created_by !=', $user_id);
+        $this->db->where('public', TRUE);
+        $query = $this->db->get();
+        return  $query->result_array();
+        
+        
+        
+    }
        
 }//end of class
 

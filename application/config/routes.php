@@ -15,6 +15,8 @@ $route['exercises'] = 'exercises/index';
 
 //memberships
 $route['workouts'] = 'workouts/index';
+$route['my_workouts'] = 'workouts/my_workouts';
+$route['public'] = 'workouts/public_workouts';
 
 //users
 $route['users'] = 'users/index';

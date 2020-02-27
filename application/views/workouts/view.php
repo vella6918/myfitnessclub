@@ -10,10 +10,13 @@
             	
               	<!-- if user is admin or the same person that created the workout the display and edit button will be displayed -->
               	<?php if($this->session->userdata('role') == 1 ||  $this->session->userdata('user_id') == $workout['created_by']):?>
-              	<a href="<?php echo base_url().'workouts/share/'.$workout['workout_id'];?>" class="btn btn-danger btn-sm">Share</a>
               	<a href="<?php echo base_url().'workouts/edit/'.$workout['workout_id'];?>" class="btn btn-warning btn-sm">Edit</a>
               	<a href="<?php echo base_url().'workouts/delete/'.$workout['workout_id'];?>" class="btn btn-danger btn-sm">Delete</a>
               	<?php endif;?>
+              	<?php if($this->session->userdata('role') == 1 ||  $this->session->userdata('role') == 2):?>
+              	<a href="<?php echo base_url().'workouts/share/'.$workout['workout_id'];?>" class="btn btn-info btn-sm">Share</a>
+              	<?php endif;?>
+              	
               	
               </th>
             </tr>
