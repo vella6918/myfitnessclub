@@ -124,9 +124,21 @@ class Workout_model extends CI_Model{
         $this->db->update('workout_exercise', $data);
         
         return true;
-    }
+    }//end of update_workout_exercise_table table
+    
+    
+    //Delete a workout
+    public function delete_workout($workout_id){
+        $this->db->where('workout_id', $workout_id);
+        $this->db->delete('workouts');
+        
+        return true;
+    }//end of delete_membership method
        
 }//end of class workout_model
+
+
+
 
 
 

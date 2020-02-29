@@ -200,6 +200,11 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+             <?php if($this->session->flashdata('workout_deleted')):?>
+            <?php $flash_message = $this->session->flashdata('workout_deleted');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>

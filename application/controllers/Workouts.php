@@ -274,12 +274,45 @@ class Workouts extends CI_Controller{
                 
                 //redirect user
                 redirect('workouts/view/'.$workout_id);
-        }
+            }
         
         
         
+        }else {
+            show_404();
         }
     }//end of update method
+    
+    
+    
+    //Method to delete workout
+    public function delete($workout_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //Get workout
+        $data['workout'] = $this->workout_model->get_workouts($workout_id);
+        
+        //check if user is administrator or owner of workout
+        if($this->session->userdata('role') == 1){
+            
+            //if user admin go to delete method in the membership model class
+            $this->workout_model->delete_workout($workout_id);
+                       
+            // Set message
+            $this->session->set_flashdata('workout_deleted', 'Your workout has been deleted');
+            
+            //redirect
+            redirect('workouts');
+        }else{
+            echo WOOOOW;
+        }
+        
+        
+        
+    }//end of delete method
     
    
     
