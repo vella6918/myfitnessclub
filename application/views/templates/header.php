@@ -195,6 +195,11 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+             <?php if($this->session->flashdata('workout_updated')):?>
+            <?php $flash_message = $this->session->flashdata('workout_updated');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>
@@ -239,6 +244,11 @@
             
             <?php if($this->session->flashdata('exercise_failed_to_update')):?>
             <?php $flash_message = $this->session->flashdata('exercise_failed_to_update');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('workout_failed_to_updat')):?>
+            <?php $flash_message = $this->session->flashdata('workout_failed_to_updat');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             

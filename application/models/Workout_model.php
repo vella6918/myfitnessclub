@@ -70,8 +70,10 @@ class Workout_model extends CI_Model{
         //Insert workout into database
         $this->db->insert('workouts', $data);
         
+        //return workout id
         return $this->db->insert_id();
     }//end of new_exercise method
+    
     
     public function insert_exercise_into_workout($workout_id, $exercise_id, $sets, $reps){
         //Exercise data array
@@ -84,8 +86,49 @@ class Workout_model extends CI_Model{
         
        //insert exercise data into table workout_exercise
        return $this->db->insert('workout_exercise', $data);
-    }//end of 
+    }//end of insert_exercise_into_workout method
+    
+    
+    //update workout method
+    public function update_workout($workout_id){
+        
+        //Exercise data array
+        $data= array(
+            'workout' => $this->input->post('workout'),
+            'created_by' => $this->session->userdata('user_id')
+        );
+        
+        //get workout
+        $this->db->where('workout_id', $workout_id);
+        //Update workout into database
+        $this->db->update('workouts', $data);
+        
+        return true;
+    }//end of update_workout_method
+    
+    
+    //update workout_exercise table
+    public function update_workout_exercise_table($workout_id, $exercise_id, $sets, $reps, $slug){
+        
+        //Membership data array
+        $data= array(
+            'workout_id' => $workout_id,
+            'exercise_id' => $exercise_id,
+            'sets' => $sets,
+            'reps' => $reps
+        );
+        
+        //get membership
+        $this->db->where('slug', $slug);
+        //Update membership into database
+        $this->db->update('workout_exercise', $data);
+        
+        return true;
+    }
        
-}//end of class insert_exercise_into_workout 
+}//end of class workout_model
+
+
+
 
 ?>

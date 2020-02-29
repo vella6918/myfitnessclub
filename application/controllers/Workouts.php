@@ -150,8 +150,136 @@ class Workouts extends CI_Controller{
             redirect('my_workouts');
         }
     }//end of method create
+    
+    
+    
+    //Method to edit workout
+    public function edit($workout_id){
+        
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //Get workout
+        $data['workout'] = $this->workout_model->get_workouts($workout_id);
+        
+        //Show error 404 if memnership does not exist in database
+        if(empty($data['workout'])){
+            show_404();
+        }
+        
+        //check if user is administrator or owner of workout
+        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $workout['created_by']){
+            
+            //set page title
+            $data['title'] = 'Edit Workout';
+            
+            //get all exercises for the current workout
+            $data['selected_exercises'] = $this->workout_model->get_exercises_workout($workout_id);
+
+            //get all exercises
+            $data['exercises'] = $this->exercise_model->get_exercises();
+            
+            //count the number of exercises
+            $data['size'] = count($data['selected_exercises']);
+            
+            //load views
+            $this->load->view('templates/header');
+            $this->load->view('workouts/edit', $data);
+            $this->load->view('templates/footer');
+            
+        }else{
+            show_404();
+        }
+
+    }//end of edit workout method
 
     
+    //update workout
+    public function update($workout_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        
+        //Get workout
+        $data['workout'] = $this->workout_model->get_workouts($workout_id);
+        
+        //Show error 404 if memnership does not exist in database
+        if(empty($data['workout'])){
+            show_404();
+        }
+        
+        //check if user is administrator or owner of workout
+        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $workout['created_by']){
+            //load update workout
+            $update_workout = $this->workout_model->update_workout($workout_id);
+            
+            
+            //get arrays of exercises
+            $exercises = $this->input->post('w_name');
+            $sets = $this->input->post('sets');
+            $reps = $this->input->post('reps');
+            
+            $new_exercises = $this->input->post('new_exercise');
+            $new_sets = $this->input->post('new_sets');
+            $new_reps = $this->input->post('new_reps');
+            $slugs = $this->input->post('slugs');
+            
+            //count current exercises
+            $size_slugs = count($slugs);
+            
+            //count new exercises
+            $size_exercises = count($new_exercises);
+            
+            //update current exercises
+            for($i=0; $i<$size_slugs; $i++){
+                //current data
+                $current_e = $exercises[$i];
+                $current_s = $sets[$i];
+                $current_r = $reps[$i];
+                $current_slug = $slugs[$i];
+                
+                //update exercises of the current workout
+                $update_exercises = $this->workout_model->update_workout_exercise_table($workout_id, $current_e, $current_s, $current_r, $current_slug);
+            }
+            
+            //insert new exercises
+            for($i=0; $i<$size_exercises; $i++){
+                
+                $current_e = $new_exercises[$i];
+                $current_s = $new_sets[$i];
+                $current_r = $new_reps[$i];
+                
+                //insert exercise details in workout
+                $this->workout_model->insert_exercise_into_workout($workout_id, $current_e, $current_s, $current_r);
+                
+            }
+            
+            
+            
+            
+            
+            if($update){
+                // Set message
+                $this->session->set_flashdata('workout_updated', 'Your workout has been updated');
+                
+                //redirect user
+                redirect('my_workouts');
+            }else{
+                // Set message
+                $this->session->set_flashdata('workout_failed_to_update', 'Your workout has failed to update');
+                
+                //redirect user
+                redirect('workouts/view/'.$workout_id);
+        }
+        
+        
+        
+        }
+    }//end of update method
     
    
     
