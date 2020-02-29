@@ -92,7 +92,64 @@ class Workouts extends CI_Controller{
         $this->load->view('templates/header');
         $this->load->view('workouts/public', $data);
         $this->load->view('templates/footer');
-    }
+    }//end of public workouts method
+    
+    
+    //create new workout
+    public function create() {
+         
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        $data['title'] = 'New Workout';
+        
+        //get all exercises
+        $data['exercises'] = $this->exercise_model->get_exercises();
+        
+        //setting errors
+        $this->form_validation->set_rules('workout', 'Workout', 'required');
+        
+        
+        if($this->form_validation->run() === FALSE){
+            //displaying the Add new membership page with errors
+            $this->load->view('templates/header');
+            $this->load->view('workouts/create', $data);
+            $this->load->view('templates/footer');
+        }else{
+            
+            //calling the new_workout method in the workout model
+            $workout_id = $this->workout_model->new_workout();
+            
+            //get arrays of exercises
+            $exercises = $this->input->post('w_name');
+            $sets = $this->input->post('sets');
+            $reps = $this->input->post('reps');
+            
+            //count exercises
+            $size = count($exercises);
+            
+            
+            if($exercises > 0){
+                
+               for($i=0; $i<$size; $i++){
+                    $current_e = $exercises[$i];
+                    $current_s = $sets[$i];
+                    $current_r = $reps[$i];
+                    
+                    //insert exercise details in workout
+                    $this->workout_model->insert_exercise_into_workout($workout_id, $current_e, $current_s, $current_r);
+               }        
+            }
+            
+            // set message in a session
+            $this->session->set_flashdata('workout_created', 'You have created a new workout.');
+            
+            //redirect user to memberships
+            redirect('my_workouts');
+        }
+    }//end of method create
 
     
     

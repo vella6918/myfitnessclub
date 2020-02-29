@@ -1,8 +1,10 @@
 
 		
 		<div class="row">
-    		<h1><?php echo $title;?></h1>
-		</div>
+        	<div class="col-lg-6">
+        		<h1><?php echo $title;?></h1>
+        	</div>
+        </div> 
 		
 		<table class="table table-sm">
           <thead class="thead-dark">
@@ -10,7 +12,7 @@
               <th scope="col">Workout ID:</th>
               <th scope="col">Workout Title:</th>
               <th scope="col">Date created:</th>
-              <th></th>
+              <th><a href="<?php echo base_url().'workouts/create';?>" class="btn btn-success btn-sm float-right">Add New Workout</a></th>
             </tr>
           </thead>
           <tbody>
@@ -26,9 +28,3 @@
           <?php endforeach;?>
        	</tbody>
 	 </table> 
-     
-     <div>
-     	<a href="<?php echo base_url().'workouts/create';?>" class="btn btn-success btn-sm float-right">Add New Workout</a>
-     	<a href="<?php echo base_url().'public';?>" class="btn btn-info btn-sm float-right">View public workouts of other users</a>
-     	
-     </div>

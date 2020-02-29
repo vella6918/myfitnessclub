@@ -1,19 +1,8 @@
-		
-		
-		
-		
-        <ul class="nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link active" href="<?php echo base_url().'my_workouts';?>">My Workouts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="<?php echo base_url().'public';?>">Public Workouts</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Favourites</a>
-          </li>
-        </ul>
-        
+        <div class="row">
+        	<div class="col-lg-6">
+        		<h1><?php echo $title;?></h1>
+        	</div>
+        </div>    
 
 		
 		<table class="table table-sm">

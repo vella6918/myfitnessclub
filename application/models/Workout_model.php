@@ -47,14 +47,7 @@ class Workout_model extends CI_Model{
     
     //get public workouts
     public function get_public_workouts($user_id = FALSE){
-        /*
-        $query=$this->db->select('*')->from('workouts')
-        ->group_start()
-        ->where('public', '1')
-        ->where_not_in('created_by', $user_id)
-        ->group_end()
-        ->get();
-        */
+
         $this->db->select('*');
         $this->db->from('workouts');
         $this->db->join('users','users.user_id = workouts.created_by');
@@ -62,11 +55,37 @@ class Workout_model extends CI_Model{
         $this->db->where('public', TRUE);
         $query = $this->db->get();
         return  $query->result_array();
+  
+    }//end of get_public_workouts method
+    
+    
+    //Create new workout
+    public function new_workout(){
+        //Exercise data array
+        $data= array(
+            'workout' => $this->input->post('workout'),
+            'created_by' => $this->session->userdata('user_id')
+        );
         
+        //Insert workout into database
+        $this->db->insert('workouts', $data);
         
+        return $this->db->insert_id();
+    }//end of new_exercise method
+    
+    public function insert_exercise_into_workout($workout_id, $exercise_id, $sets, $reps){
+        //Exercise data array
+        $data= array(
+            'workout_id' => $workout_id,
+            'exercise_id' => $exercise_id,
+            'sets' => $sets,
+            'reps' => $reps
+       );
         
-    }
+       //insert exercise data into table workout_exercise
+       return $this->db->insert('workout_exercise', $data);
+    }//end of 
        
-}//end of class
+}//end of class insert_exercise_into_workout 
 
 ?>

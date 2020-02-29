@@ -25,7 +25,7 @@
                   <div class="collapse navbar-collapse" id="navbarColor01">
                     <ul class="navbar-nav mr-auto">
                     
-                    <!-- if useris not logged in -->
+                    <!-- if user is not logged in -->
                     <?php if(!$this->session->userdata('logged_in')) : ?>
                 	               
                       <li class="nav-item">
@@ -41,7 +41,7 @@
                     	  <!-- if user is administrator -->                 	
                         <?php if($this->session->userdata('role') == 1): ?>
                             <li class="nav-item">
-                              <a class="nav-link" href="<?php echo base_url();?>users/index">Members</a>
+                              <a class="nav-link" href="<?php echo base_url();?>users/index">Users</a>
                              </li>
                              
                              <li class="nav-item">
@@ -49,17 +49,22 @@
                       		</li>
                       		
                       		<li class="nav-item">
-                              <a class="nav-link" href="<?php echo base_url();?>workouts">All Workouts</a>
+                              <a class="nav-link" href="<?php echo base_url();?>workouts">Workouts</a>
                         	</li>                 			
                          <?php endif; ?>
+                         
+                         <!-- If user is Trainee -->
+                         <?php if($this->session->userdata('role') == 3):?>
+                         	  <li class="nav-item">
+                              	<a class="nav-link" href="<?php echo base_url();?>my_workouts">My Workouts</a>
+                        	  </li> 
+                         <?php endif;?>
                          
                          <li class="nav-item">
                        	 	<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
                       	</li>
                       	
-                      	<li class="nav-item">
-                              <a class="nav-link" href="<?php echo base_url();?>my_workouts">My Workouts</a>
-                        </li>  
+ 
                       	
                       	
                       	
@@ -76,6 +81,13 @@
                     
                     <ul  class="nav-item navbar-nav navbar-right nav">
                     
+                    
+                    
+                    
+                    <!-- 
+                        Right hand side of the Nav Bar
+                        If user is not logged in
+                     -->
 					<?php if(!$this->session->userdata('logged_in')) : ?>
                     	 <li class="nav-item">
                         	<a class="nav-link" href="<?php echo base_url();?>users/login">Login</a>
@@ -86,6 +98,10 @@
                       	</li>
                     <?php endif; ?>
                     
+                    
+                    
+                    
+                    <!-- If user is logged in -->
                     <?php if($this->session->userdata('logged_in')) : ?>
 
                       	 <li class="nav-item">
@@ -171,6 +187,11 @@
             
             <?php if($this->session->flashdata('exercise_updated')):?>
             <?php $flash_message = $this->session->flashdata('exercise_updated');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('workout_created')):?>
+            <?php $flash_message = $this->session->flashdata('workout_created');?>
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
