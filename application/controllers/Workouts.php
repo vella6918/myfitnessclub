@@ -62,14 +62,11 @@ class Workouts extends CI_Controller{
         //get workouts
         $data['my_workouts'] = $this->workout_model->get_my_workouts($this->session->userdata('user_id'));
         
-        if(empty($data['my_workouts'])){
-           show_404();
-        }
-        
+ 
         $this->load->view('templates/header');
         $this->load->view('workouts/my_workouts', $data);
         $this->load->view('templates/footer');
-        
+            
     }
     
     
@@ -313,6 +310,84 @@ class Workouts extends CI_Controller{
         
         
     }//end of delete method
+    
+    
+    
+    //Method to share a workout
+    public function share($workout_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //if user is trainee show error 404
+        if($this->session->userdata('role') == 3){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }
+        
+        //get workout
+        $data['workout'] = $this->workout_model->get_workouts($workout_id);
+        //ser title
+        $data['title'] = 'Share Workout:'.$data['workout']['workout'];
+        //get all users
+        $data['users'] = $this->user_model->get_users();
+        
+        
+        //load views
+        $this->load->view('templates/header');
+        $this->load->view('workouts/share', $data);
+        $this->load->view('templates/footer');
+        
+        
+        
+    }//end of share method
+    
+    
+    //Method to share a workout
+    public function share_workout($workout_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //if user is trainee show error 404
+        if($this->session->userdata('role') == 3){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }
+        
+        //set id of the selected user
+        $user_id = $this->input->post('user_id');
+        
+        //check if workout is already shared with the selected user
+        $check = $this->workout_model->check_share($workout_id,$user_id);
+        
+        //if check is true
+        if($check){
+            //get selected user
+            $data['user'] = $this->user_model->get_users($user_id);
+            
+            // Set message
+            $this->session->set_flashdata('workout_already_shared', 'Your workout is already shared with '.$data['user']['username']);
+            
+            //redirect
+            redirect('workouts/view/'.$workout_id);
+        }else{
+            
+            $this->workout_model->workout_user($workout_id, $user_id);
+            
+            // Set message
+            $this->session->set_flashdata('workout_shared', 'Your workout has been shared');
+            
+            //redirect
+            redirect('workouts/view/'.$workout_id);
+            
+        }
+           
+    }//end of share_workout method
+    
+    
     
    
     

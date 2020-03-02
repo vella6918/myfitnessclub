@@ -14,7 +14,7 @@
               	<a href="<?php echo base_url().'workouts/delete/'.$workout['workout_id'];?>" class="btn btn-danger btn-sm">Delete</a>
               	<?php endif;?>
               	<?php if($this->session->userdata('role') == 1 ||  $this->session->userdata('role') == 2):?>
-              	<a href="<?php echo base_url().'workouts/share/'.$workout['workout_id'];?>" class="btn btn-info btn-sm">Share</a>
+              	<a href="<?php echo base_url().'share/'.$workout['workout_id'];?>" class="btn btn-info btn-sm">Share</a>
               	<?php endif;?>
               	
               	

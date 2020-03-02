@@ -34,8 +34,13 @@
                       
                     <?php endif; ?>
                     
+                    
+                    
                     <!-- if user is logged in -->
                     <?php if($this->session->userdata('logged_in')) : ?>
+                    
+                    
+                    
                     	
                     	
                     	  <!-- if user is administrator -->                 	
@@ -53,33 +58,51 @@
                         	</li>                 			
                          <?php endif; ?>
                          
-                         <!-- If user is Trainee -->
-                         <?php if($this->session->userdata('role') == 3):?>
+                         
+                         
+                         
+                         <!-- If user is Trainee or admin -->
+                         <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 3 ):?>
+                         	<li class="nav-item">
+                       	 		<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
+                      		</li>
+                         <?php endif;?>
+                         
+                         
+                         
+                         
+                         <!-- If user is Trainee or Trainer -->
+                         <?php if($this->session->userdata('role') == 3 || $this->session->userdata('role') == 2 ):?>
                          	  <li class="nav-item">
                               	<a class="nav-link" href="<?php echo base_url();?>my_workouts">My Workouts</a>
                         	  </li> 
                          <?php endif;?>
                          
-                         <li class="nav-item">
-                       	 	<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
-                      	</li>
-                      	
- 
-                      	
-                      	
-                      	
-                      	
-                      	
                          
+                         
+                      	
+     
                      <?php endif; ?>
-                      
+                    
+                    
+                    
+                    
+                     <!-- If user is administrator or trainee or if logged out -->
+                     <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 3 || $this->session->userdata('logged_in') == FALSE):?>
+                    
                       <li class="nav-item">
                         <a class="nav-link" href="<?php echo base_url();?>memberships/index">Memberships</a>
                       </li>
+                                            
+                      <?php endif;?>
                                       	
                     </ul>
                     
+                    
+                    
                     <ul  class="nav-item navbar-nav navbar-right nav">
+                    
+                    
                     
                     
                     
@@ -97,6 +120,8 @@
                         	<a class="nav-link" href="<?php echo base_url();?>users/register">Register</a>
                       	</li>
                     <?php endif; ?>
+                    
+                    
                     
                     
                     
@@ -205,6 +230,11 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('workout_shared')):?>
+            <?php $flash_message = $this->session->flashdata('workout_shared');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>
@@ -254,6 +284,11 @@
             
             <?php if($this->session->flashdata('workout_failed_to_updat')):?>
             <?php $flash_message = $this->session->flashdata('workout_failed_to_updat');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('workout_already_shared')):?>
+            <?php $flash_message = $this->session->flashdata('workout_already_shared');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             

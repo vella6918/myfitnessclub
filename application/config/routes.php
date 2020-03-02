@@ -13,10 +13,11 @@ $route['payments'] = 'payments/index';
 //exercises
 $route['exercises'] = 'exercises/index';
 
-//memberships
+//workouts
 $route['workouts'] = 'workouts/index';
 $route['my_workouts'] = 'workouts/my_workouts';
 $route['public'] = 'workouts/public_workouts';
+$route['share/(:any)'] = 'workouts/share/$1';
 
 //users
 $route['users'] = 'users/index';

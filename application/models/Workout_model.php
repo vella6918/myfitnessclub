@@ -124,7 +124,7 @@ class Workout_model extends CI_Model{
         $this->db->update('workout_exercise', $data);
         
         return true;
-    }//end of update_workout_exercise_table table
+    }//end of update_workout_exercise_table method
     
     
     //Delete a workout
@@ -134,6 +134,36 @@ class Workout_model extends CI_Model{
         
         return true;
     }//end of delete_membership method
+    
+    
+    //indert data into workout_user table
+    public function workout_user($workout_id, $user_id){
+        
+        //data
+        $data= array(
+            'workout_id' => $workout_id,
+            'shared_with' => $user_id
+        );
+        
+        //insert into database
+        $this->db->insert('workout_user', $data);
+        
+        return true;
+    }//end of workout_user method
+    
+    
+    //check if workout is already shared with user
+    public function check_share($workout_id, $user_id){
+        //check data in database
+        $query = $this->db->get_where('workout_user', array('workout_id' => $workout_id, 'shared_with' => $user_id));
+        if(empty($query->row_array())){
+            return false;
+        } else {
+            return true;
+        }
+    }
+    
+    
        
 }//end of class workout_model
 
