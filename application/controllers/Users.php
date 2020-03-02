@@ -47,6 +47,20 @@
                 //encript password
                 $enc_password = md5($this->input->post('password'));
                 
+                //generate entry code
+                $code = mt_rand(1000,9999);
+                
+                //check if code already exists in datbase
+                $check_code = $this->user_model->check_code($code);
+                
+                //keep generating a new code until the code is unique
+                while ($check_code == true){
+                    //generate entry code
+                    $code = mt_rand(1000,9999);
+                    //check if code already exists in datbase
+                    $check_code = $this->user_model->check_code($code);
+                }
+                
                 //check role, if it is not posted, set role to default 3
                 if($this->input->post('role_id')){
                     $role = $this->input->post('role_id');
@@ -55,7 +69,7 @@
                 }
                 
                 //calling the registration method in the user model and passing the encrypted password
-                $this->user_model->register($enc_password, $role);
+                $this->user_model->register($enc_password, $role, $code);
                 
                 // set message in a session
                 $this->session->set_flashdata('user_registered', 'You are now registered and can Login.');

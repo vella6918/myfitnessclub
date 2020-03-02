@@ -19,7 +19,7 @@ class User_model extends CI_Model{
     
     
     //indert user data
-    public function register ($enc_password, $role){
+    public function register ($enc_password, $role, $code){
         //User data array
         $data= array(
             'name' => $this->input->post('name'),
@@ -27,7 +27,8 @@ class User_model extends CI_Model{
             'username' => $this->input->post('username'),
             'email' => $this->input->post('email'),
             'password' => $enc_password,
-            'role_id' => $role
+            'role_id' => $role,
+            'entry_code' => $code
         );
         
         //Insert user into database
@@ -168,6 +169,20 @@ class User_model extends CI_Model{
         
         return true;
     }//end of update_user method
+    
+    
+    //generate user code
+    public function check_code($code){
+       
+        //check data in database
+        $query = $this->db->get_where('users', array('entry_code' => $code));
+        if(empty($query->row_array())){
+            return false;
+        } else {
+            return true;
+        }
+
+    }
     
     
     
