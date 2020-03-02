@@ -64,6 +64,15 @@ class Paypal extends CI_Controller{
                 //insert transaction into database 
                 $this->membership_model->insertTransaction($data);
                 
+                //get product details
+                $data['product'] = $this->membership_model->get_memberships($this->input->post('item_number'));
+                
+                //calculate membership expiry date
+                $expires_on = Date('d:m:y', strtotime("+".$data['product']['days']." days"));
+                
+                //insert data into table membership_user
+                $this->membership_model->membership_user($expires_on, $this->input->post('item_number'), $this->input->post('custom'));
+                
                 // set message in a session
                 $this->session->set_flashdata('successful_transaction', 'Your transaction was successful.');
                 

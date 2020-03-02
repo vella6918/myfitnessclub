@@ -171,7 +171,7 @@ class User_model extends CI_Model{
     }//end of update_user method
     
     
-    //generate user code
+    //check user entry code
     public function check_code($code){
        
         //check data in database

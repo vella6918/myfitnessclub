@@ -43,6 +43,20 @@ class Membership_model extends CI_Model{
     }//end of insertTransaction method
     
     
+    //insert data into membership_user table
+    public function membership_user($expires_on, $membership_id, $user_id){
+        
+        //Membership data array
+        $data= array(
+            'user_id' => $user_id,
+            'membership_id' => $membership_id,
+            'expires_on' => $expires_on        
+        );
+        
+        //Insert data into database
+        return $this->db->insert('membership_user', $data);
+        
+    }//end of membership_user method
     
     
     
