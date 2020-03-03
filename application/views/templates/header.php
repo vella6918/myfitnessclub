@@ -66,6 +66,10 @@
                          	<li class="nav-item">
                        	 		<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
                       		</li>
+                      		
+                      		<li class="nav-item">
+                       	 		<a class="nav-link" href="<?php echo base_url();?>check">Check-in</a>
+                      		</li>
                          <?php endif;?>
                          
                          
@@ -235,6 +239,11 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('check-in')):?>
+            <?php $flash_message = $this->session->flashdata('check-in');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>
@@ -289,6 +298,11 @@
             
             <?php if($this->session->flashdata('workout_already_shared')):?>
             <?php $flash_message = $this->session->flashdata('workout_already_shared');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('no_membership')):?>
+            <?php $flash_message = $this->session->flashdata('no_membership');?>
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             

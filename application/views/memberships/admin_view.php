@@ -18,7 +18,7 @@
           <?php  foreach ($memberships as $membership) : ?>
           
           <tr>
-              <td><?php echo $membership['name'];?></td>
+              <td><?php echo $membership['membership'];?></td>
               <td><?php echo $membership['price'];?></td>
               <td>
                   <a href="<?php echo base_url().'memberships/detele/'.$membership['membership_id'];?>" class="btn btn-danger btn-sm">Delete</a>&nbsp;&nbsp;

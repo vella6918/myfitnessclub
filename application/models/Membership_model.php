@@ -66,7 +66,7 @@ class Membership_model extends CI_Model{
     public function new_membership(){
         //Membership data array
         $data= array(
-            'name' => $this->input->post('name'),
+            'membership' => $this->input->post('name'),
             'price' => $this->input->post('price')
         );
         
@@ -99,7 +99,7 @@ class Membership_model extends CI_Model{
         
         //Membership data array
         $data= array(
-            'name' => $this->input->post('name'),
+            'membership' => $this->input->post('name'),
             'price' => $this->input->post('price'),
         );
         

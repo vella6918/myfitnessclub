@@ -22,6 +22,7 @@ $route['share/(:any)'] = 'workouts/share/$1';
 //users
 $route['users'] = 'users/index';
 $route['login'] = 'users/login';
+$route['check'] = 'users/check';
 
 //pages
 $route['default_controller'] = 'pages/view';

@@ -7,7 +7,7 @@
         	<h1 class="text-center"><?php echo $title; ?></h1>
         	<div class="form-group">
         		<label>Name</label>
-        		<input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $membership['name']; ?>" required autofocus>
+        		<input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $membership['membership']; ?>" required autofocus>
         	</div>
         	<div class="form-group">
         		<label>Price in &euro;</label>

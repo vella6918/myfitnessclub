@@ -182,8 +182,49 @@ class User_model extends CI_Model{
             return true;
         }
 
-    }
+    }//end of check_code method
     
     
+    //find user with code
+    public function code ($code){
+        
+        //Validate
+        $this->db->where('entry_code', $code);
+        
+        // get user id
+        $result = $this->db->get('users');
+        
+        //return user_id
+        if($result->num_rows() == 1){
+            return $result->row(0)->user_id;
+        }else{
+            return FALSE;
+        }
+        
+    }//end of code method
     
-}
+    //get membership and user details
+    public function membership_user($user_id){
+        
+        $this->db->join('users','users.user_id = membership_user.user_id');
+        $this->db->join('memberships','memberships.membership_id = membership_user.membership_id');
+        $this->db->join('role','role.role_id = users.role_id');
+        $query = $this->db->get_where('membership_user', array('membership_user.user_id' => $user_id));
+        return $query->row_array();
+  
+    }//end of membership_user data
+    
+    
+    //check in user
+    public function checkin ($user_id){
+            $data= array(
+                'user_id' => $user_id
+            );
+            
+        
+        //Insert user into database
+        return $this->db->insert('checkins', $data);
+        
+    }//end of checkin method
+    
+}//end of class

@@ -20,7 +20,7 @@
             	<div class="col-lg-2">
                     <div class="card ">
                       <div class="card-header">
-                        <?php echo $membership['name'];?>
+                        <?php echo $membership['membership'];?>
                       </div>
                       <div class="card-body">
                         <h5 class="card-title">&euro;<?php echo $membership['price'];?></h5>

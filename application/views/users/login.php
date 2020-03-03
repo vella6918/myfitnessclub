@@ -1,3 +1,8 @@
+<?php 
+    //echo errors
+    echo validation_errors();
+?>
+
 <?php echo form_open('users/login');?>
 
 
