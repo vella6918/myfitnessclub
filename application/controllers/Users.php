@@ -560,6 +560,31 @@
             
             
             
+            //get all checkins
+            public function all_checkins(){
+                //check login
+                if(!$this->session->userdata('logged_in')){
+                    redirect('users/login');
+                }
+                
+                //get role
+                $role = $this->session->userdata('role');
+                
+                //check if user is trainer or admin
+                if($role == 1 ||  $role == 2){                  
+                    $data['title'] = 'All Checkins';
+                    $data['checkins'] = $this->user_model->get_checkins();
+                    
+                    $this->load->view('templates/header');
+                    $this->load->view('users/all_checkins', $data);
+                    $this->load->view('templates/footer');
+                    
+                }else{
+                    show_404();
+                }
+
+  
+            }//end of checkins method
             
 
     }//end of class

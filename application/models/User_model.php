@@ -227,4 +227,14 @@ class User_model extends CI_Model{
         
     }//end of checkin method
     
+    
+    
+    //get all checkins
+    public function get_checkins(){
+        $this->db->order_by('checkin_id', 'DESC');
+        $this->db->join('users','users.user_id = checkins.user_id');
+        $query = $this->db->get('checkins');
+        return $query->result_array();
+    }
+    
 }//end of class
