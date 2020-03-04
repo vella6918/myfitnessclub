@@ -29,7 +29,7 @@ if($details['disabled'] == TRUE){
             <tr>
               <th scope="col">User Details</th>
               <th>
-              	<a href="<?php echo base_url().'users/checkin/'.$details['user_id'];?>" class="btn btn-success btn-sm">Check-in</a>
+              	<a href="<?php echo base_url().'checkins/checkin/'.$details['user_id'];?>" class="btn btn-success btn-sm">Check-in</a>
  			  </th>
             </tr>
           </thead>

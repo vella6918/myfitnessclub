@@ -27,7 +27,7 @@
     echo validation_errors();
 ?>
 
-<?php echo form_open('users/check');?>
+<?php echo form_open('checkins/check');?>
 
 
 
