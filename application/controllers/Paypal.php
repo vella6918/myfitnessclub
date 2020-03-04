@@ -69,7 +69,9 @@ class Paypal extends CI_Controller{
                 $data['product'] = $this->membership_model->get_memberships($this->input->post('item_number'));
                 
                 //calculate membership expiry date
-                $expires_on = Date('d:m:y', strtotime("+".$data['product']['days']." days"));
+                $currentDate = date('Y-m-d');
+                $membership_days = $data['product']['days'];
+                $expires_on = date('Y-m-d', strtotime($currentDate . ' + '.$membership_days.' days'));
                 
                 //insert data into table membership_user
                 $this->membership_model->membership_user($expires_on, $this->input->post('item_number'), $this->input->post('custom'));

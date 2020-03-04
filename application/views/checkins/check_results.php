@@ -95,7 +95,7 @@ if($details['disabled'] == TRUE){
             <tr>
               <th scope="col">Membership Details</th>
               <th>
-              	<a href="<?php echo base_url()?>" class="btn btn-info btn-sm">Renew Membership</a>
+              	<a href="<?php echo base_url().'assign/'.$user['user_id'];?>" class="btn btn-info btn-sm">Renew Membership</a>
               </th>
             </tr>
           </thead>
