@@ -264,11 +264,16 @@
                     show_404();
                 }
                 
-                
+                //get user data
                 $data['user'] = $this->user_model->get_users($user_id);
                 
                 if(empty($data['user'])){
                     show_404();
+                }
+                
+                //if the user in question is trainee get membership details
+                if($data['user']['role_id'] == 3){
+                    $data['membership'] = $this->user_model->membership_user($user_id);
                 }
                 
                 

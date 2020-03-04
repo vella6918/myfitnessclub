@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 //memberships
 $route['memberships'] = 'memberships/index';
+$route['assign/(:any)'] = 'memberships/assign/$1';
 
 //calendar
 $route['calendar'] = 'calendar/index';
@@ -22,6 +23,7 @@ $route['share/(:any)'] = 'workouts/share/$1';
 //users
 $route['users'] = 'users/index';
 $route['login'] = 'users/login';
+$route['view/(:any)'] = 'users/view/$1';
 
 //checkins
 $route['check'] = 'checkins/check';

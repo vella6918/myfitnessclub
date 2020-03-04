@@ -212,6 +212,98 @@ class Memberships extends CI_Controller {
             redirect('memberships');
         }
     }//end of update method
+    
+    
+    //renew membership and pay by cash
+    public function assign($user_id){
+        
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //get role
+        $role = $this->session->userdata('role');
+        
+        //if user is trainee show 404 error
+        if($role == 3){
+            show_404();
+        }
+        
+        //set page title
+        $data['title'] = 'Assign Membership';
+        
+       //get memberships
+       $data['memberships'] = $this->membership_model->get_memberships();
+       
+       //current user
+       $data['user'] = $user_id;
+       
+       
+       //setting errors
+       $this->form_validation->set_rules('membership', 'membership', 'required');
+        
+       if($this->form_validation->run() === FALSE){
+            //load views
+            $this->load->view('templates/header');
+            $this->load->view('memberships/assign', $data);
+            $this->load->view('templates/footer');
+       }else{
+           
+           $membership_id = $this->input->post('membership');
+           
+           //get the selected membership
+           $data['membership'] = $this->membership_model->get_memberships($membership_id);
+           
+           $membership_days = $data['membership']['days'];
+                    
+           $membership_price =  $data['membership']['price'];
+           
+           // Insert the transaction data in the database
+           $data= array(
+               'user_id' => $user_id,
+               'product_id' => $membership_id,
+               'payment_gross' => $membership_price,
+               'currency_code' => 'EUR',
+               'payment_type' => 'CASH',
+               'payment_status' => 'Completed'
+           );
+           
+           //insert transaction into database
+           $this->membership_model->insertTransaction($data);
+           
+           //find data in membership_user table
+           $data['details'] = $this->user_model->membership_user($user_id);
+           
+           //calculate membership expiry date
+           $currentDate = date('Y-m-d');
+ 
+           $expires_on = date('Y-m-d', strtotime($currentDate . ' + '.$membership_days.' days'));
+          
+           
+           if(empty($data['details'])){
+               //insert new record in table membership_user
+               $this->membership_model->membership_user($expires_on, $membership_id, $user_id);
+               
+               // set message in a session
+               $this->session->set_flashdata('membership_renewed', 'Membership Renewed.');
+               
+               //redirect user to memberships
+               redirect('view/'.$user_id);
+           }else{
+               //update membership_user table
+               $update = $this->membership_model->update_membership_user($expires_on, $membership_id, $user_id);
+               
+               // set message in a session
+               $this->session->set_flashdata('membership_renewed', 'Membership Renewed.');
+               
+               //redirect user to memberships
+               redirect('view/'.$user_id);
+           }
+           
+       }
+ 
+    }//end of assign method
 
 }//end of class
     

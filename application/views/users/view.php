@@ -75,28 +75,40 @@
       </table>
 </div>
 </br>
+
+<!-- Display only if user is trainee -->
+<?php 
+    if($user['role_id'] == 3):
+    $date = date('y-m-d');
+?>
+
 <div>
 		<table class="table table-sm">
           <thead class="thead-dark">
             <tr>
               <th scope="col">Membership Details</th>
               <th>
-              	<a href="<?php echo base_url()?>" class="btn btn-info btn-sm">Renew Membership</a>
-              	<a href="<?php echo base_url();?>" class="btn btn-info btn-sm">Buy New Membership</a>
+              	<?php     
+                    //check if user holds a valid membership
+                    if($membership['expires_on'] < $date):
+                 ?>
+              	<a href="<?php echo base_url().'assign/'.$user['user_id'];?>" class="btn btn-info btn-sm">Renew Membership</a>
+              	<?php endif;?>
               </th>
             </tr>
           </thead>
           <tbody>
               <tr>
                   <td><b>Membership:</b></td>
-                  <td></td>
+                  <td><?php echo $membership['membership'];?></td>
               </tr>
               <tr>
                   <td><b>Expiry:</b></td>
-                  <td></td>
+                  <td><?php echo $membership['expires_on'];?></td>
               </tr>
           </tbody>
       </table>
 </div>
 
+<?php endif;?>
 

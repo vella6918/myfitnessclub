@@ -244,6 +244,11 @@
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('membership_renewed')):?>
+            <?php $flash_message = $this->session->flashdata('membership_renewed');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             
             
             <?php if($this->session->flashdata('login_failed')):?>

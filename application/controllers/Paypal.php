@@ -57,6 +57,7 @@ class Paypal extends CI_Controller{
                     'txn_id' => $this->input->post('txn_id'),
                     'payment_gross' => $this->input->post('mc_gross'),
                     'currency_code' => $this->input->post('mc_currency'),
+                    'payment_type' => 'PayPal',
                     'payer_email' => $this->input->post('payer_email'),
                     'payment_status' => 'Completed'
                );

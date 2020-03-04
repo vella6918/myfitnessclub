@@ -88,11 +88,7 @@ class Membership_model extends CI_Model{
     }//end of delete_membership method
     
     
-    
-    
-    
-    
-    
+
     
     //update membership method
     public function update_membership($membership_id){
@@ -111,6 +107,25 @@ class Membership_model extends CI_Model{
         return true;
     }
     
+    
+    //insert data into membership_user table
+    public function update_membership_user($expires_on, $membership_id, $user_id){
+        
+        //Membership data array
+        $data= array(
+            'user_id' => $user_id,
+            'membership_id' => $membership_id,
+            'expires_on' => $expires_on
+        );
+        
+        //get membership
+        $this->db->where('user_id', $user_id);
+        //Update membership into database
+        $this->db->update('membership_user', $data);
+        
+        return true;
+        
+    }//end of membership_user method
     
     
 }
