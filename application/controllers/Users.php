@@ -2,6 +2,7 @@
 
     class Users extends CI_Controller {
         
+        
         public function index(){
             //check login
             if(!$this->session->userdata('logged_in')){
@@ -68,6 +69,11 @@
                     $role = '3';   
                 }
                 
+                //get user email
+                $recipient = $this->input->post('email');
+                
+                
+                
                 //calling the registration method in the user model and passing the encrypted password
                 $this->user_model->register($enc_password, $role, $code);
                 
@@ -77,8 +83,18 @@
                 
                 //check login
                 if(!$this->session->userdata('logged_in')){
+
+                    //send email
+                    $this->email_for_new_user($recipient, $code);
+                    
                     redirect('login');
                 }else{
+                    $password = $this->input->post('password');
+                    $username = $this->input->post('username');
+
+                    //send email
+                    $this->email_for_new_user($recipient, $code,$password, $username);
+                    
                     redirect('users');
                 }
                 
@@ -479,7 +495,43 @@
             }
             
             
-
             
+            //private function to send email to new registered user
+            public function email_for_new_user($recipient, $code, $password=FALSE, $username = FALSE){
+                
+                
+                $config = array(
+                    'protocol' => 'smtp',
+                    'smtp_host' => 'ssl://smtp.gmail.com',
+                    'smtp_user' => 'vella6918@gmail.com',
+                    'smtp_pass' => 'sv3us3r345!',
+                    'smtp_port' => 465,
+                    'mailtype' => 'html',
+                    'charset' => 'iso-8859-1'
+                );
+                
+                
+                $this->email->initialize($config);
+                $this->email->set_mailtype("html");
+                $this->email->set_newline("\r\n");
+                
+                
+                $this->email->to($recipient);
+                $this->email->from('vella6918@gmail.com','The Fitness Club');
+                $this->email->subject('You have been registered to the fitness club');
+                
+                if($password && $username){
+                    $this->email->message('<p>You can now access the gym with this code: '.$code.'</p><b>Username: </b>'.$username.'</p><p><b>Password: </b>'.$password.'</p>');
+                }else{
+                    $this->email->message('You can now access the gym with this code: '.$code);
+                }
+                
+                
+                //send email
+                $this->email->send();
+
+            }//end email function
+            
+    
 
     }//end of class
