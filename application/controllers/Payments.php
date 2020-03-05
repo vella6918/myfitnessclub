@@ -42,5 +42,30 @@ class Payments extends CI_Controller {
             $this->load->view('payments/myPayments', $data);
         }
         $this->load->view('templates/footer');
+    }//end of index method
+    
+    
+    
+    //view payment receipt
+    public function view($payment_id){
+        
+        
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //get all payments
+        $data['payment'] = $this->payment_model->get_payments($payment_id);
+        
+        
+        //set title
+        $data['title'] = 'BUSINESS RECEIPT';
+        
+        
+        //load view
+        $this->load->view('payments/view', $data);
+
     }
-}
+    
+}//end of class

@@ -21,7 +21,7 @@
           <?php  foreach ($payments as $payment) : ?>
           
           <tr>
-              <td>#<?php echo $payment['payment_id'];?></td>
+              <td><a href="<?php echo base_url().'payments/view/'.$payment['payment_id'];?>" target="_blank">#<?php echo $payment['payment_id'];?></a></td>
               <td><a href="<?php echo base_url().'users/view/'.$payment['user_id'];?>"><?php echo $payment['username'];?></a></td>
               <td><?php echo $payment['name'];?></td>
               <td>&euro;<?php echo $payment['payment_gross'];?></td>

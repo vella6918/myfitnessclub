@@ -19,7 +19,7 @@
           <?php  foreach ($payments as $payment) : ?>
           
           <tr>
-              <td>#<?php echo $payment['payment_id'];?></td>
+              <td><a href="<?php echo base_url().'payments/view/'.$payment['payment_id'];?>" target="_blank">#<?php echo $payment['payment_id'];?></a></td>
               <td><?php echo $payment['name'];?></td>
               <td>&euro;<?php echo $payment['payment_gross'];?></td>
               <td><?php echo $payment['payment_status'];?></td>
@@ -30,7 +30,6 @@
                   	  echo $convertDate;
                   	?>
               </td>
-
           </tr>
           
           <?php endforeach;?>
