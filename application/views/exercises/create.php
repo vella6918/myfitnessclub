@@ -16,15 +16,19 @@
         	</div>
         	<div class="form-group">
         		<label>Details</label>
-        		<input type="text" class="form-control" name="details" placeholder="Details" required autofocus>
+        		<textarea type="text" class="form-control"name="details" placeholder="Details"></textarea>
         	</div>
         	<div class="form-group">
-        		<label>Video</label>
+        		<label>YouTube Video ID:</label>
         		<input type="text" class="form-control" name="video" placeholder="Video" required autofocus>
         	</div>
         	<div class="form-group">
-        		<label>Muscle Group</label>
-        		<input type="text" class="form-control" name="muscle_group" placeholder="Muscle Group" required autofocus>
+        		<label>Muscle Group</label>      		
+        		<select name="muscle_id" class="form-control">
+        			<?php foreach($muscle_groups as $muscle_group): ?>
+        				<option value="<?php echo $muscle_group['muscle_id'] ?>"><?php echo $muscle_group['muscle']; ?></option>
+        			<?php endforeach;?>
+        		</select>
         	</div>
         	<div class="form-group">
         	

@@ -23,16 +23,21 @@
                   <td><?php echo $exercise['details'];?></td>
               </tr>
               <tr>
-                  <td><b>Video:</b></td>
-                  <td><?php echo $exercise['video'];?></td>
-              </tr>
-              <tr>
                   <td><b>Muscle Group:</b></td>
-                  <td><?php echo $exercise['group_id'];?></td>
+                  <td><?php echo $muscle_group['muscle'];?></td>
               </tr>
           </tbody>
       </table>
 </div>
 
+</br></br>
+
+<div class="justify-content-center align-items-center row">
+    <div class="col-md-5 col-md-offset-5">
+    	<iframe width="520" height="415"
+        	src="https://www.youtube.com/embed/<?php echo $exercise['video'];?>?autoplay=1">
+        </iframe>
+    </div>
+</div>
 
 

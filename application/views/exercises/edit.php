@@ -11,15 +11,19 @@
         	</div>
         	<div class="form-group">
         		<label>Details</label>
-        		<input type="text" class="form-control" name="details" value="<?php echo $exercise['details'];?>" required autofocus>
+        		<textarea type="text" class="form-control" name="details" rows="4" cols="10"><?php echo $exercise['details'];?></textarea>
         	</div>
         	<div class="form-group">
-        		<label>Video</label>
+        		<label>YouTube Video ID</label>
         		<input type="text" class="form-control" name="video" value="<?php echo $exercise['video'];?>" required autofocus>
         	</div>
         	<div class="form-group">
-        		<label>Muscle Group</label>
-        		<input type="text" class="form-control" name="muscle_group" value="<?php echo $exercise['group_id']?>" required autofocus>
+        		<label>Muscle Group</label>      		
+        		<select name="muscle_id" class="form-control">
+        			<?php foreach($muscle_groups as $muscle_group): ?>
+        				<option value="<?php echo $muscle_group['muscle_id'] ?>"><?php echo $muscle_group['muscle']; ?></option>
+        			<?php endforeach;?>
+        		</select>
         	</div>
         	<div class="form-group">
         	

@@ -5,7 +5,7 @@ class Exercise_model extends CI_Model{
     //Get all exercises
     Public function get_exercises($exercise_id = False){
         
-        //Get all users
+        //Get all exercises
         if($exercise_id === FALSE){
             $query = $this->db->get('exercises');
             return $query->result_array();
@@ -16,6 +16,22 @@ class Exercise_model extends CI_Model{
         return $query->row_array();
         
     }//end of get_exercises method
+    
+    
+    //Get all muscle groups
+    Public function get_muscle_groups($muscle_id = False){
+        
+        //Get all muscle_groups
+        if($muscle_id === FALSE){
+            $query = $this->db->get('muscle_group');
+            return $query->result_array();
+        }
+        
+        //Get a specific muscle_group
+        $query = $this->db->get_where('muscle_group', array('muscle_id' => $muscle_id));
+        return $query->row_array();
+        
+    }//end of get_muscle_groups method
     
     
     //Delete a exercise
@@ -34,7 +50,7 @@ class Exercise_model extends CI_Model{
             'exercise' => $this->input->post('exercise'),
             'details' => $this->input->post('details'),
             'video' => $this->input->post('video'),
-            'group_id' => $this->input->post('muscle_group')
+            'group_id' => $this->input->post('muscle_id')
         );
         
         //Insert user into database
@@ -50,7 +66,7 @@ class Exercise_model extends CI_Model{
             'exercise' => $this->input->post('exercise'),
             'details' => $this->input->post('details'),
             'video' => $this->input->post('video'),
-            'group_id' => $this->input->post('muscle_group')
+            'group_id' => $this->input->post('muscle_id')
         );
         
         //get membership

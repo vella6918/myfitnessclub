@@ -29,7 +29,13 @@ class Exercises extends CI_Controller{
             redirect('users/login');
         }
         
+        //get exercise
         $data['exercise'] = $this->exercise_model->get_exercises($exercise_id);
+        
+        $muscle_id = $data['exercise']['group_id'];
+        
+        //get muscle group
+        $data['muscle_group'] = $this->exercise_model->get_muscle_groups($muscle_id);
         
         if(empty($data['exercise'])){
             show_404();      
@@ -80,6 +86,9 @@ class Exercises extends CI_Controller{
         
         $data['title'] = 'New Exercise';
         
+        //get muscle groups
+        $data['muscle_groups'] = $this->exercise_model->get_muscle_groups();
+        
         //setting errors
         $this->form_validation->set_rules('exercise', 'Exercise', 'required');
         
@@ -121,6 +130,8 @@ class Exercises extends CI_Controller{
         //Get Membership
         $data['exercise'] = $this->exercise_model->get_exercises($exercise_id);
         
+        //get muscle groups
+        $data['muscle_groups'] = $this->exercise_model->get_muscle_groups();
         
         //Show error 404 if memnership does not exist in database
         if(empty($data['exercise'])){
