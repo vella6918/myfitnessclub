@@ -47,10 +47,10 @@ class Exercise_model extends CI_Model{
     public function new_exercise(){
         //Exercise data array
         $data= array(
-            'exercise' => $this->input->post('exercise'),
-            'details' => $this->input->post('details'),
-            'video' => $this->input->post('video'),
-            'group_id' => $this->input->post('muscle_id')
+            'exercise' => $this->db->escape_str($this->input->post('exercise')),
+            'details' => $this->db->escape_str($this->input->post('details')),
+            'video' => $this->db->escape_str($this->input->post('video')),
+            'group_id' => $this->db->escape_str($this->input->post('muscle_id'))
         );
         
         //Insert user into database
@@ -63,10 +63,10 @@ class Exercise_model extends CI_Model{
         
         //Exercise data array
         $data= array(
-            'exercise' => $this->input->post('exercise'),
-            'details' => $this->input->post('details'),
-            'video' => $this->input->post('video'),
-            'group_id' => $this->input->post('muscle_id')
+            'exercise' => $this->db->escape_str($this->input->post('exercise')),
+            'details' => $this->db->escape_str($this->input->post('details')),
+            'video' => $this->db->escape_str($this->input->post('video')),
+            'group_id' => $this->db->escape_str($this->input->post('muscle_id'))
         );
         
         //get membership

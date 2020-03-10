@@ -66,12 +66,13 @@ class Membership_model extends CI_Model{
     public function new_membership(){
         //Membership data array
         $data= array(
-            'membership' => $this->input->post('name'),
-            'price' => $this->input->post('price')
+            'membership' => $this->db->escape_str($this->input->post('name')),
+            'price' => $this->db->escape_str($this->input->post('price'))
         );
         
         //Insert user into database
-        return $this->db->insert('memberships', $data);
+        $this->db->insert('memberships', $data);
+        
     }//end of create_membership method
     
     
@@ -113,9 +114,9 @@ class Membership_model extends CI_Model{
         
         //Membership data array
         $data= array(
-            'user_id' => $user_id,
-            'membership_id' => $membership_id,
-            'expires_on' => $expires_on
+            'user_id' => $this->db->escape_str($user_id),
+            'membership_id' => $this->db->escape_str($membership_id),
+            'expires_on' => $this->db->escape_str($expires_on)
         );
         
         //get membership

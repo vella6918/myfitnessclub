@@ -7,7 +7,7 @@ class Checkin_model extends CI_Model{
     public function checkin ($user_id){
         
         $data= array(
-            'user_id' => $user_id
+            'user_id' => $this->db->escape_str($user_id)
         );
         
         

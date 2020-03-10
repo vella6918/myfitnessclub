@@ -63,8 +63,8 @@ class Workout_model extends CI_Model{
     public function new_workout(){
         //Exercise data array
         $data= array(
-            'workout' => $this->input->post('workout'),
-            'created_by' => $this->session->userdata('user_id')
+            'workout' => $this->db->escape_str($this->input->post('workout')),
+            'created_by' => $this->db->escape_str($this->session->userdata('user_id'))
         );
         
         //Insert workout into database
@@ -78,10 +78,10 @@ class Workout_model extends CI_Model{
     public function insert_exercise_into_workout($workout_id, $exercise_id, $sets, $reps){
         //Exercise data array
         $data= array(
-            'workout_id' => $workout_id,
-            'exercise_id' => $exercise_id,
-            'sets' => $sets,
-            'reps' => $reps
+            'workout_id' => $this->db->escape_str($workout_id),
+            'exercise_id' => $this->db->escape_str($exercise_id),
+            'sets' => $this->db->escape_str($sets),
+            'reps' => $this->db->escape_str($reps)
        );
         
        //insert exercise data into table workout_exercise
@@ -94,8 +94,8 @@ class Workout_model extends CI_Model{
         
         //Exercise data array
         $data= array(
-            'workout' => $this->input->post('workout'),
-            'created_by' => $this->session->userdata('user_id')
+            'workout' => $this->db->escape_str($this->input->post('workout')),
+            'created_by' => $this->db->escape_str($this->session->userdata('user_id'))
         );
         
         //get workout
