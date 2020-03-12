@@ -69,6 +69,12 @@
                        	 		<a class="nav-link" href="<?php echo base_url();?>payments">Payments</a>
                       		</li>
                       		
+                         <?php endif;?>
+                         
+                         
+                         
+                         <!-- If user is Trainer or admin -->
+                         <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 2 ):?>                    		
                       		<li class="nav-item">
                        	 		<a class="nav-link" href="<?php echo base_url();?>check">Check-in</a>
                       		</li>
@@ -77,10 +83,14 @@
                          
                          
                          
+                         
                          <!-- If user is Trainee or Trainer -->
                          <?php if($this->session->userdata('role') == 3 || $this->session->userdata('role') == 2 ):?>
                          	  <li class="nav-item">
                               	<a class="nav-link" href="<?php echo base_url();?>my_workouts">My Workouts</a>
+                        	  </li>
+                        	  <li class="nav-item">
+                              	<a class="nav-link" href="<?php echo base_url();?>events/index">Events</a>
                         	  </li> 
                          <?php endif;?>
                          
@@ -263,6 +273,11 @@
             
              <?php if($this->session->flashdata('event_deleted')):?>
             <?php $flash_message = $this->session->flashdata('event_deleted');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('joined')):?>
+            <?php $flash_message = $this->session->flashdata('joined');?>
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             

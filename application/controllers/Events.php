@@ -2,6 +2,8 @@
 
 class Events extends CI_Controller {
     
+    
+    
     //default view method for fitness classes
     public function index(){
         $data['title'] = 'Fitness Classes';
@@ -23,6 +25,12 @@ class Events extends CI_Controller {
         
         //get user data
         $data['event'] = $this->event_model->get_events($event_id);
+        
+        //set user id
+        $user_id = $this->session->userdata('user_id');
+        
+        //check if user if joined to the event
+        $data['join'] = $this->event_model->check_join($event_id, $user_id);
         
         //get joiners
         $data['joiners'] = $this->event_model->get_joiners($event_id);
@@ -165,6 +173,27 @@ class Events extends CI_Controller {
         
     }//end of delete method
     
+    
+    
+    public function join($event_id){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //set trainee id
+        $trainee_id = $this->session->userdata('user_id');
+        
+        //join event
+        $this->event_model->events_trainees($event_id, $trainee_id);
+        
+        // Set message
+        $this->session->set_flashdata('joined', 'You have joined successfully event');
+        
+        //redirect
+        redirect('events/view/'.$event_id);
+    }
+        
    
 }//end of class
     

@@ -1,6 +1,8 @@
 <?php 
 
 class Event_model extends CI_Model{
+    
+    
 
     //Get all fitness classes
     Public function get_events($event_id = False){
@@ -74,6 +76,34 @@ class Event_model extends CI_Model{
         
         return true;
     }//end of delete_event method
+    
+    
+
+    
+    //insert data into events_trainees table
+    public function events_trainees($event_id, $trainee_id){
+        
+        //Membership data array
+        $data= array(
+            'event_id' => $event_id,
+            'trainee_id' => $trainee_id
+        );
+        
+        //Insert data into database
+        return $this->db->insert('event_trainees', $data);
+        
+    }//end of event_trainees method
+    
+    
+    public function check_join($event_id, $user_id){
+        //check data in database
+        $query = $this->db->get_where('event_trainees', array('event_id' => $event_id, 'trainee_id' => $user_id));
+        if(empty($query->row_array())){
+            return false;
+        } else {
+            return true;
+        }
+    }
     
 }//end of class class_name 
 

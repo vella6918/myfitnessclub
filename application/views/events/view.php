@@ -6,9 +6,15 @@
           <thead class="thead-dark">
             <tr>
               <th scope="col">Event Details</th>
-              <th>                           	
+              <th>
+              	<?php if($this->session->userdata('role') == 3):?>
+              		<?php if($join == FALSE):?>
+              			<a href="<?php echo base_url().'events/join/'.$event['id'];?>" class="btn btn-info btn-sm">Join</a>
+              		<?php endif;?>
+              	<?php else:?>                           	
               	<a href="<?php echo base_url().'events/edit/'.$event['id'];?>" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;
               	<a href="<?php echo base_url().'events/delete/'.$event['id'];?>" class="btn btn-warning btn-sm">Delete</a>
+              	<?php endif;?>
               </th>
             </tr>
           </thead>
