@@ -99,6 +99,13 @@ class User_model extends CI_Model{
         
     }
     
+    //Get all trainers
+    Public function get_trainers(){
+      $this->db->join('role','role.role_id = users.role_id');
+      $query = $this->db->get_where('users', array('users.role_id' => 2));
+      return $query->result_array();
+    }
+    
     
     //disable user
     public function disable_user($user_id){

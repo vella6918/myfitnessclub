@@ -130,7 +130,7 @@ class Memberships extends CI_Controller {
             
         
         // Set message
-        $this->session->set_flashdata('membership_deleted', 'Your post has been deleted');
+        $this->session->set_flashdata('membership_deleted', 'Your membership has been deleted');
         
         //redirect
         redirect('memberships');
