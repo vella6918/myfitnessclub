@@ -31,40 +31,9 @@ class Calendar extends CI_Controller {
         echo json_encode($data);
     }
     
-    function insert()
-    {
-        if($this->input->post('title'))
-        {
-            $data = array(
-                'title'  => $this->input->post('title'),
-                'start_event'=> $this->input->post('start'),
-                'end_event' => $this->input->post('end')
-            );
-            $this->calendar_model->insert_event($data);
-        }
-    }
+
     
-    function update()
-    {
-        if($this->input->post('id'))
-        {
-            $data = array(
-                'title'   => $this->input->post('title'),
-                'start_event' => $this->input->post('start'),
-                'end_event'  => $this->input->post('end')
-            );
-            
-            $this->calendar_model->update_event($data, $this->input->post('id'));
-        }
-    }
-    
-    function delete()
-    {
-        if($this->input->post('id'))
-        {
-            $this->calendar_model->delete_event($this->input->post('id'));
-        }
-    }
+
     
 }
 

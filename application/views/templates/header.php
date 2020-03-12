@@ -2,8 +2,8 @@
 	<head>
 		<title>My Fitness Club</title>
 		<!-- <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"> -->
-		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 		<link rel="stylesheet" href="<?php echo base_url();?>assets/css/style.css"/>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css" />
 	    
     	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -19,7 +19,7 @@
 	<body>
 	
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                  <a class="navbar-brand" href="<?php echo base_url();?>calendar">My Fitness Club</a>
+                  <a class="navbar-brand" href="<?php echo base_url();?>">My Fitness Club</a>
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                   </button>
@@ -41,9 +41,12 @@
                     <!-- if user is logged in -->
                     <?php if($this->session->userdata('logged_in')) : ?>
                     
+                      <li class="nav-item">
+                      	<a class="nav-link" href="<?php echo base_url();?>calendar">Calendar</a>
+                	  </li>  
                     
-                    
-                    	
+            	                    	  
+                	  
                     	
                     	  <!-- if user is administrator -->                 	
                         <?php if($this->session->userdata('role') == 1): ?>
@@ -78,6 +81,10 @@
                       		<li class="nav-item">
                        	 		<a class="nav-link" href="<?php echo base_url();?>check">Check-in</a>
                       		</li>
+                      		
+                      		<li class="nav-item">
+                          		<a class="nav-link" href="<?php echo base_url();?>events/index">Events</a>
+                    	  	</li>
                          <?php endif;?>
                          
                          
@@ -89,9 +96,6 @@
                          	  <li class="nav-item">
                               	<a class="nav-link" href="<?php echo base_url();?>my_workouts">My Workouts</a>
                         	  </li>
-                        	  <li class="nav-item">
-                              	<a class="nav-link" href="<?php echo base_url();?>events/index">Events</a>
-                        	  </li> 
                          <?php endif;?>
                          
                          
@@ -160,7 +164,9 @@
     
     
     
-    	<div class="container">
+    	<div class="container" style="position: relative; min-height: 100vh;">
+    	
+    	<div style= "padding-bottom: 2.5rem;">
         
         <!--  Display Flash Messages -->
         
