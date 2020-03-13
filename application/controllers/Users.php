@@ -15,9 +15,11 @@
                 show_404();
             }
             
+            //set title
             $data['title'] = 'All Users';
+            //get user
             $data['users'] = $this->user_model->get_users();
-            
+                        
             $this->load->view('templates/header');
             $this->load->view('users/index', $data);
             $this->load->view('templates/footer');
@@ -83,15 +85,15 @@
                 
                 //check login
                 if(!$this->session->userdata('logged_in')){
-
-                    //send email
+                     //if registration is done by the user online
+                    //send email to the registered user
                     $this->email_for_new_user($recipient, $code);
                     
                     redirect('login');
                 }else{
                     $password = $this->input->post('password');
                     $username = $this->input->post('username');
-
+                    //if registration is done by the administrator or by the trainer
                     //send email
                     $this->email_for_new_user($recipient, $code,$password, $username);
                     
@@ -283,6 +285,17 @@
                 //get user data
                 $data['user'] = $this->user_model->get_users($user_id);
                 
+                //if trainer is not equal to NULL
+                if($data['user']['trainer'] != NULL){
+                    //get trainer data
+                    $data['trainer'] = $this->user_model->get_users($data['user']['trainer']);
+                }
+                
+                //if trainer find all assigned trainees
+                if($data['user']['role_id'] == 2){
+                   $data['trainees'] = $this->user_model->get_assigned_trainees($data['user']['user_id']);
+                }
+                
                 if(empty($data['user'])){
                     show_404();
                 }
@@ -455,7 +468,7 @@
                 if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $user_id){
                     //get user details
                     $data['user'] = $this->user_model->get_users($user_id);
-                    
+                                      
                     
                     //if user details are not found show 404
                     if(empty($data['user'])){
@@ -531,6 +544,50 @@
                 $this->email->send();
 
             }//end email function
+            
+            
+            //asiign trainer to a member
+            public function assign_trainer($user_id){
+                //check login
+                if(!$this->session->userdata('logged_in')){
+                    redirect('users/login');
+                }
+                
+                //if user is trainee show 404 error page will be displayed
+                if($this->session->userdata('role') == 3){
+                    show_404();
+                }
+                
+                //find user
+                $data['user'] = $this->user_model->get_users($user_id);
+                
+                //set user id
+                $user_id = $data['user']['user_id'];
+                
+                //set title
+                $data['title'] = 'Assign Trainer';
+                
+                //get all trainers
+                $data['trainers'] = $this->user_model->get_trainers();
+                
+                //setting errors
+                $this->form_validation->set_rules('trainer', 'Trainer', 'required');
+                
+                if($this->form_validation->run() === FALSE){
+                    //displaying view page with errors
+                    $this->load->view('templates/header');
+                    $this->load->view('users/assign_trainer', $data);
+                    $this->load->view('templates/footer');
+                }else{
+                    
+                    $this->user_model->assign_trainer($user_id);
+                    
+                    // Set message
+                    $this->session->set_flashdata('trainer_assigned', 'Trainer assigned.');
+                    
+                    redirect('users/view/'.$user_id);
+                }
+            }//end of assign_trainer method
             
     
 

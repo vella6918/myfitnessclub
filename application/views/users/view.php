@@ -16,6 +16,10 @@
               	
               	<a href="<?php echo base_url().'users/edit/'.$user['user_id'];?>" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;
               	<a href="<?php echo base_url().'users/resetPassword/'.$user['user_id'];?>" class="btn btn-warning btn-sm">Reset Password</a>
+              	
+              	<?php if($user['role_id']==3):?>
+              	<a href="<?php echo base_url().'users/assign_trainer/'.$user['user_id'];?>" class="btn btn-success btn-sm">Assign Trainer</a>
+              	<?php endif;?>
               </th>
             </tr>
           </thead>
@@ -71,6 +75,15 @@
                       ?>
                   </td>
               </tr>
+              
+              <?php if($user['role_id']==3):?>
+              <?php if($user['trainer'] != NULL):?>
+              	<tr>
+                  <td><b>Trainer: </b></td>
+                  <td><a href="<?php echo base_url().'users/view/'.$trainer['user_id'];?>"><?php echo $trainer['username'];?></a></td>
+              	</tr>
+              <?php endif;?>
+              <?php endif;?>
           </tbody>
       </table>
 </div>
@@ -105,6 +118,31 @@
               <tr>
                   <td><b>Expiry:</b></td>
                   <td><?php echo $membership['expires_on'];?></td>
+              </tr>
+          </tbody>
+      </table>
+</div>
+
+<?php endif;?>
+
+
+<!-- Display only if user is trainer -->
+<?php 
+    if($user['role_id'] == 2):
+?>
+
+<div>
+		<table class="table table-sm">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Assigned Members:</th>
+             </tr>
+          </thead>
+          <tbody>
+              <tr>
+					<?php foreach ($trainees as $trainee):?>
+						<td><a href="<?php echo base_url().'users/view/'.$trainee['user_id'];?>"><?php echo $trainee['username'];?></a></td>
+					<?php endforeach;;?>
               </tr>
           </tbody>
       </table>

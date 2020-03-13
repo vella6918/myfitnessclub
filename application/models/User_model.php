@@ -107,6 +107,14 @@ class User_model extends CI_Model{
     }
     
     
+    //Get all tainees
+    Public function get_members(){
+        $this->db->join('role','role.role_id = users.role_id');
+        $query = $this->db->get_where('users', array('users.role_id' => 3));
+        return $query->result_array();
+    }
+    
+    
     //disable user
     public function disable_user($user_id){
         
@@ -222,6 +230,26 @@ class User_model extends CI_Model{
     }//end of membership_user data
     
     
+    
+    //update user details with trainers id
+    public function assign_trainer($user_id){
+        //User data array
+        $data= array(
+            'trainer' => $this->input->post('trainer')            
+        );
+        
+        //get user
+        $this->db->where('user_id', $user_id);
+        //Update user details
+        $this->db->update('users', $data);        
+    }
+    
+    //Get all trainers
+    Public function get_assigned_trainees($trainer_id){
+        $this->db->join('role','role.role_id = users.role_id');
+        $query = $this->db->get_where('users', array('users.trainer' => $trainer_id));
+        return $query->result_array();
+    }
 
     
 }//end of class
