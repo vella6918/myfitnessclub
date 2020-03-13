@@ -1,6 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+//messages
+$route['inbox'] = 'messages/inbox';
+$route['sent'] = 'messages/sent';
+
 //memberships
 $route['memberships'] = 'memberships/index';
 $route['assign/(:any)'] = 'memberships/assign/$1';
@@ -36,3 +40,5 @@ $route['(:any)'] = 'pages/view/$1';
 //error
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
