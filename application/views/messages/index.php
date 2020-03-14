@@ -1,24 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light ">
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<a href="<?php echo base_url().'create';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Create</a>&nbsp;
+<a href="<?php echo base_url().'inbox';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Inbox</a>&nbsp;
+<a href="<?php echo base_url().'sent';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">sent</a>&nbsp;
+		
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url().'messages/create';?>">Create <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="<?php echo base_url().'inbox';?>">Inbox</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url().'sent';?>">Sent</a>
-      </li>
-    </ul>
-  </div>
-</nav>
-		
-		
+<hr>		
 		
 		
 		

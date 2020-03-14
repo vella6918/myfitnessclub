@@ -602,9 +602,9 @@
                 $this->email->subject('The Fitness Club');
                 
                 if($password && $username){
-                    $this->email->message('<p>You have been registered to the fitness club</p><p>You can now access the gym with this code: '.$code.'</p><p>You can access the web application with the following credentials</p><p><b>Username: </b>'.$username.'</p><p><b>Password: </b>'.$password.'</p>');
+                    $this->email->message('<p>You have been registered to The Fitness Club</p><p>You can now access the gym with this code: '.$code.'</p><p>You can access the web application with the following credentials</p><p><b>Username: </b>'.$username.'</p><p><b>Password: </b>'.$password.'</p>');
                 }else{
-                    $this->email->message('You can now access the gym with this code: '.$code);
+                    $this->email->message('<p>WELCOME to The Fitness Club. Your online registration was successfull. Next step is to purchase a membership from the web application.</p><p>Once putchased you will be able to access the gyms\'s premisses by presenting the following code to the reception desk.</p> <p>code: '.$code.'</p>');
                 }
                 
                 
