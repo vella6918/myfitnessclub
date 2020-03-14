@@ -36,4 +36,22 @@ class Message_model extends CI_Model{
         return $query->result_array();
     }
     
+    
+    //create method
+    public function create($sender){
+        //Membership data array
+        $data= array(
+        'subject' => $this->db->escape_str($this->input->post('subject')),
+        'message' => $this->db->escape_str($this->input->post('message')),
+        'sender' => $sender,
+        'receiver' => $this->input->post('receiver')
+        );
+        
+        //insert into database
+        $this->db->insert('messages', $data);
+        
+        //return message id
+        return $this->db->insert_id();
+    }
+    
 }//end of class

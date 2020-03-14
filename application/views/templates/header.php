@@ -48,7 +48,11 @@
                     
                       <li class="nav-item">
                       	<a class="nav-link" href="<?php echo base_url();?>calendar">Calendar</a>
-                	  </li>  
+                	  </li>
+                	  
+                	  <li class="nav-item">
+                      	<a class="nav-link" href="<?php echo base_url();?>inbox">Inbox</a>
+                	  </li>   
                     
             	                    	  
                 	  
@@ -294,6 +298,11 @@
             
             <?php if($this->session->flashdata('trainer_assigned')):?>
             <?php $flash_message = $this->session->flashdata('trainer_assigned');?>
+            <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
+            <?php if($this->session->flashdata('message_sent')):?>
+            <?php $flash_message = $this->session->flashdata('message_sent');?>
             <?php echo '<p class="alert alert-success">'.$flash_message.'</p>';?>
             <?php endif;?>
             

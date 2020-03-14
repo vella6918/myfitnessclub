@@ -7,7 +7,11 @@
     <div class="card-body">
         
         <div class="row">
+        <?php if($sender['user_id'] == $this->session->userdata('user_id')):?>
+        	<h3>You</h3>
+        <?php else:?>
         	<h3><?php echo $sender['name'];?>&nbsp;<?php echo $sender['surname'];?></h3>
+        <?php endif;?>
         </div>
         
         <div class="row">
@@ -32,8 +36,12 @@
   	</div>
     <div class="card-body bg-light">
         
-        <div class="row">
-        	<h3><?php echo $reply['name'];?>&nbsp;<?php echo $reply['surname'];?></h3>
+        <div class="row">        	
+            <?php if($reply['user_id'] == $this->session->userdata('user_id')):?>
+            	<h3>You</h3>
+            <?php else:?>
+            	<h3><?php echo $reply['name'];?>&nbsp;<?php echo $reply['surname'];?></h3>
+            <?php endif;?>
         </div>
         
         <div class="row">

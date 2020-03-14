@@ -516,8 +516,8 @@
                 $config = array(
                     'protocol' => 'smtp',
                     'smtp_host' => 'ssl://smtp.gmail.com',
-                    'smtp_user' => 'vella6918@gmail.com',
-                    'smtp_pass' => 'sv3us3r345!',
+                    'smtp_user' => 'thefitnetics@gmail.com',
+                    'smtp_pass' => 'ZebbugMaya2011?',
                     'smtp_port' => 465,
                     'mailtype' => 'html',
                     'charset' => 'iso-8859-1'
@@ -530,7 +530,7 @@
                 
                 
                 $this->email->to($recipient);
-                $this->email->from('vella6918@gmail.com','The Fitness Club');
+                $this->email->from('donotreply@thefitnessclub.com','The Fitness Club');
                 $this->email->subject('The Fitness Club');
                 
                 if($password && $username){

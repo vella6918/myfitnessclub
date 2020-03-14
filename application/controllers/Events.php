@@ -6,6 +6,11 @@ class Events extends CI_Controller {
     
     //default view method for fitness classes
     public function index(){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
         $data['title'] = 'Fitness Classes';
         $data['events'] = $this->event_model->get_events();
         
