@@ -7,15 +7,16 @@
             <tr>
               <th scope="col">User Details</th>
               <th>
-              
-              	<?php if($user['disabled']):?>
-              		<a href="<?php echo base_url().'users/enable/'.$user['user_id'];?>" class="btn btn-success btn-sm">Enable</a>&nbsp;&nbsp;
-              	<?php else:?>
-              		<a href="<?php echo base_url().'users/disable/'.$user['user_id'];?>" class="btn btn-danger btn-sm">Disable</a>&nbsp;&nbsp;
+              	<?php if($this->session->userdata('role') == 1):?>
+                  	<?php if($user['disabled']):?>
+                  		<a href="<?php echo base_url().'users/enable/'.$user['user_id'];?>" class="btn btn-success btn-sm">Enable</a>&nbsp;&nbsp;
+                  	<?php else:?>
+                  		<a href="<?php echo base_url().'users/disable/'.$user['user_id'];?>" class="btn btn-danger btn-sm">Disable</a>&nbsp;&nbsp;
+                  	<?php endif;?>
+                  	
+                  	<a href="<?php echo base_url().'users/edit/'.$user['user_id'];?>" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;
+                  	<a href="<?php echo base_url().'users/resetPassword/'.$user['user_id'];?>" class="btn btn-warning btn-sm">Reset Password</a>
               	<?php endif;?>
-              	
-              	<a href="<?php echo base_url().'users/edit/'.$user['user_id'];?>" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;
-              	<a href="<?php echo base_url().'users/resetPassword/'.$user['user_id'];?>" class="btn btn-warning btn-sm">Reset Password</a>
               	
               	<?php if($user['role_id']==3):?>
               	<a href="<?php echo base_url().'users/assign_trainer/'.$user['user_id'];?>" class="btn btn-success btn-sm">Assign Trainer</a>
@@ -34,11 +35,11 @@
               </tr>
               <tr>
                   <td><b>Mobile Number:</b></td>
-                  <td></td>
+                  <td><?php echo $user['mobile'];?></td>
               </tr>
               <tr>
                   <td><b>Date of Birth:</b></td>
-                  <td></td>
+                  <td><?php  echo date('d-m-Y', strtotime($user['dob']));?></td>
               </tr>
               <tr>
                   <td><b>Enrolled on:</b></td>
@@ -52,11 +53,15 @@
               </tr>
                <tr>
                   <td><b>Gender:</b></td>
-                  <td></td>
+                  <td><?php echo $user['gender'];?></td>
               </tr>
               <tr>
                   <td><b>Username: </b></td>
                   <td><?php echo $user['username'];?></td>
+              </tr>
+         	  <tr>
+                  <td><b>Email: </b></td>
+                  <td><?php echo $user['email'];?></td>
               </tr>
                <tr>
                   <td><b>Role: </b></td>

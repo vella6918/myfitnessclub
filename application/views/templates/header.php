@@ -1,3 +1,10 @@
+<?php 
+if($this->session->userdata('logged_in') == TRUE){
+    //get logged in user data
+    $user = $this->user_model->get_users($this->session->userdata('user_id'));
+}
+?>
+
 <html>
 	<head>
 		<title>My Fitness Club</title>
@@ -50,18 +57,13 @@
                       	<a class="nav-link" href="<?php echo base_url();?>calendar">Calendar</a>
                 	  </li>
                 	  
-                	  <li class="nav-item">
-                      	<a class="nav-link" href="<?php echo base_url();?>inbox">Inbox</a>
-                	  </li>   
+   
                     
             	                    	  
                 	  
                     	
                     	  <!-- if user is administrator -->                 	
                         <?php if($this->session->userdata('role') == 1): ?>
-                            <li class="nav-item">
-                              <a class="nav-link" href="<?php echo base_url();?>users/index">Users</a>
-                             </li>
                              
                              <li class="nav-item">
                        	 		<a class="nav-link" href="<?php echo base_url();?>exercises">Exercises</a>
@@ -86,7 +88,11 @@
                          
                          
                          <!-- If user is Trainer or admin -->
-                         <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 2 ):?>                    		
+                         <?php if($this->session->userdata('role') == 1 || $this->session->userdata('role') == 2 ):?> 
+                         	 <li class="nav-item">
+                              <a class="nav-link" href="<?php echo base_url();?>users/index">Users</a>
+                             </li>
+                                                		
                       		<li class="nav-item">
                        	 		<a class="nav-link" href="<?php echo base_url();?>check">Check-in</a>
                       		</li>
@@ -129,7 +135,7 @@
                     
                     
                     
-                    <ul  class="nav-item navbar-nav navbar-right nav">
+                    <ul  class="nav-item navbar-nav navbar-right nav" style="padding:5;">
                     
                     
                     
@@ -157,12 +163,24 @@
                     
                     <!-- If user is logged in -->
                     <?php if($this->session->userdata('logged_in')) : ?>
+                    	
+                	  <li class="nav-item dropleft">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <?php echo $user['username'];?>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" href="<?php echo base_url();?>inbox">Inbox</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>edit/<?php echo $user['user_id'];?>">Edit Profile</a>
+                        <div class="dropdown-divider"></div>
+                          <a class="dropdown-item" href="<?php echo base_url();?>users/logout">Logout</a>
+                        </div>
+                      </li>
 
-                      	 <li class="nav-item">
-                        	<a class="nav-link" href="<?php echo base_url();?>users/logout">Logout</a>
-                      	</li>
                       	
                     <?php endif; ?>
+                    
+                    
+                          
                     </ul>
                     
                    </div>

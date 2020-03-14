@@ -9,9 +9,9 @@
                 redirect('users/login');
             }
             
-            //check if user is administrator
-            if($this->session->userdata('role') != 1){
-                //if user is not admin error 404 will shpw up
+            //check if user is administrator or tainer
+            if($this->session->userdata('role') == 3){
+                //if user is not admin or trainer error 404 will shpw up
                 show_404();
             }
             
@@ -20,6 +20,74 @@
             //get user
             $data['users'] = $this->user_model->get_users();
                         
+            $this->load->view('templates/header');
+            $this->load->view('users/index', $data);
+            $this->load->view('templates/footer');
+        }
+        
+        
+        public function get_trainers(){
+            //check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
+            //check if user is administrator or tainer
+            if($this->session->userdata('role') == 3){
+                //if user is not admin or trainer error 404 will shpw up
+                show_404();
+            }
+            
+            //set title
+            $data['title'] = 'Trainers';
+            //get user
+            $data['users'] = $this->user_model->get_trainers();
+            
+            $this->load->view('templates/header');
+            $this->load->view('users/index', $data);
+            $this->load->view('templates/footer');
+        }
+        
+        
+        public function get_members(){
+            //check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
+            //check if user is administrator or tainer
+            if($this->session->userdata('role') == 3){
+                //if user is not admin or trainer error 404 will shpw up
+                show_404();
+            }
+            
+            //set title
+            $data['title'] = 'Members';
+            //get user
+            $data['users'] = $this->user_model->get_members();
+            
+            $this->load->view('templates/header');
+            $this->load->view('users/index', $data);
+            $this->load->view('templates/footer');
+        }
+        
+        public function get_admins(){
+            //check login
+            if(!$this->session->userdata('logged_in')){
+                redirect('users/login');
+            }
+            
+            //check if user is administrator or tainer
+            if($this->session->userdata('role') == 3){
+                //if user is not admin or trainer error 404 will shpw up
+                show_404();
+            }
+            
+            //set title
+            $data['title'] = 'Administrators';
+            //get user
+            $data['users'] = $this->user_model->get_admins();
+            
             $this->load->view('templates/header');
             $this->load->view('users/index', $data);
             $this->load->view('templates/footer');
@@ -276,9 +344,9 @@
                     redirect('users/login');
                 }
                 
-                //check if user is administrator
-                if($this->session->userdata('role') != 1){
-                    //if user is not admin error 404 will shpw up
+                //check if user is trainee
+                if($this->session->userdata('role') == 3){
+                    //if user is trainee error 404 will shpw up
                     show_404();
                 }
                 

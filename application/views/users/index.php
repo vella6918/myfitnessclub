@@ -1,9 +1,26 @@
-
+		
 		
 		<div class="row">
+			<div class="col-lg-6 col-md-6">
     			<h1><?php echo $title;?></h1>
+    		</div>
+    		<div class="col-lg-6 col-md-6">
+			<?php if($this->session->userdata('role') != 3):?>
+    			<a href="<?php echo base_url().'users';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">All Users</a>&nbsp;
+    			<a href="<?php echo base_url().'members';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Members</a>&nbsp;
+    			<a href="<?php echo base_url().'trainers';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Tainers</a>&nbsp;
+    			<a href="<?php echo base_url().'admins';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Administrators</a>&nbsp;
+    			<a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Assigned Members</a>
+			<?php endif;?>
+    		</div>
 		</div>
 		
+		<div class="row">
+		
+
+		</div>
+		
+		<br>
 		<table class="table table-sm">
           <thead class="thead-dark">
             <tr>
@@ -32,11 +49,6 @@
               	<?php endif;?>
               </td>
               <td>
-              	<?php if($user['disabled']):?>
-              		<a href="<?php echo base_url().'users/enable/'.$user['user_id'];?>" class="btn btn-success btn-sm">Enable</a>&nbsp;&nbsp;
-              	<?php else:?>
-              		<a href="<?php echo base_url().'users/disable/'.$user['user_id'];?>" class="btn btn-danger btn-sm">Disable</a>&nbsp;&nbsp;
-              	<?php endif;?>
               	<a href="<?php echo base_url().'users/view/'.$user['user_id'];?>" class="btn btn-info btn-sm">View</a>&nbsp;&nbsp;
               	<a href="<?php echo base_url().'users/resetPassword/'.$user['user_id'];?>" class="btn btn-warning btn-sm">Reset Password</a>
               </td>

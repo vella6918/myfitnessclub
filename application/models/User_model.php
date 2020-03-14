@@ -22,10 +22,13 @@ class User_model extends CI_Model{
     public function register ($enc_password, $role, $code){
         //User data array
         $data= array(
-            'name' => $this->input->post('name'),
-            'surname' => $this->input->post('surname'),
-            'username' => $this->input->post('username'),
-            'email' => $this->input->post('email'),
+            'name' =>$this->db->escape_str( $this->input->post('name')),
+            'surname' => $this->db->escape_str($this->input->post('surname')),
+            'username' => $this->db->escape_str($this->input->post('username')),
+            'gender' => $this->db->escape_str($this->input->post('gender')),
+            'dob' => $this->input->post('dob'),
+            'email' => $this->db->escape_str($this->input->post('email')),
+            'mobile' => $this->db->escape_str($this->input->post('mobile')),
             'password' => $enc_password,
             'role_id' => $role,
             'entry_code' => $code
@@ -114,6 +117,13 @@ class User_model extends CI_Model{
         return $query->result_array();
     }
     
+    //Get all admins
+    Public function get_admins(){
+        $this->db->join('role','role.role_id = users.role_id');
+        $query = $this->db->get_where('users', array('users.role_id' => 1));
+        return $query->result_array();
+    }
+    
     
     //disable user
     public function disable_user($user_id){
@@ -170,12 +180,16 @@ class User_model extends CI_Model{
         
         //User data array
         $data= array(
-            'name' => $this->input->post('name'),
-            'surname' => $this->input->post('surname'),
-            'username' => $this->input->post('username'),
-            'email' => $this->input->post('email'),
+            'name' =>$this->db->escape_str( $this->input->post('name')),
+            'surname' => $this->db->escape_str($this->input->post('surname')),
+            'username' => $this->db->escape_str($this->input->post('username')),
+            'gender' => $this->db->escape_str($this->input->post('gender')),
+            'dob' => $this->input->post('dob'),
+            'email' => $this->db->escape_str($this->input->post('email')),
+            'mobile' => $this->db->escape_str($this->input->post('mobile')),
             'role_id' => $this->input->post('role_id')
         );
+        
         
         //get user
         $this->db->where('user_id', $user_id);
