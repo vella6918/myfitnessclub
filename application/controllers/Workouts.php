@@ -167,7 +167,7 @@ class Workouts extends CI_Controller{
         }
         
         //check if user is administrator or owner of workout
-        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $workout['created_by']){
+        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $data['workout']['created_by']){
             
             //set page title
             $data['title'] = 'Edit Workout';
@@ -210,7 +210,7 @@ class Workouts extends CI_Controller{
         }
         
         //check if user is administrator or owner of workout
-        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $workout['created_by']){
+        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $data['workout']['created_by']){
             //load update workout
             $update_workout = $this->workout_model->update_workout($workout_id);
             
@@ -293,7 +293,7 @@ class Workouts extends CI_Controller{
         $data['workout'] = $this->workout_model->get_workouts($workout_id);
         
         //check if user is administrator or owner of workout
-        if($this->session->userdata('role') == 1){
+        if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $data['workout']['created_by']){
             
             //if user admin go to delete method in the membership model class
             $this->workout_model->delete_workout($workout_id);
@@ -303,11 +303,8 @@ class Workouts extends CI_Controller{
             
             //redirect
             redirect('workouts');
-        }else{
-            echo WOOOOW;
+        
         }
-        
-        
         
     }//end of delete method
     
