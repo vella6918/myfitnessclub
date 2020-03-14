@@ -40,6 +40,7 @@ class Events extends CI_Controller {
         //get joiners
         $data['joiners'] = $this->event_model->get_joiners($event_id);
         
+        
         if(empty($data['event'])){
             show_404();
         }

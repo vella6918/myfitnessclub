@@ -74,14 +74,16 @@
        	</div>
        	
        	<div class="row">
-       	<div class="col-lg-6 col-md-6">
-        	<div class="form-group">
-        		<label>Email</label>
-        		<input type="email" class="form-control" name="email" placeholder="Email" required autofocus autocomplete=off>
-        	</div>
-        </div>
+           	<div class="col-lg-6 col-md-6">
+            	<div class="form-group">
+            		<label>Email</label>
+            		<input type="email" class="form-control" name="email" placeholder="Email" required autofocus autocomplete=off>
+            	</div>
+            </div>
+    
+            <div class="col-lg-6 col-md-6">
         	<?php if($this->session->userdata('role') == 1) : ?>
-        	<div class="col-lg-6 col-md-6">
+        	
             	<div class="form-group">
             		<label>Role</label>
             		<select name="role_id" class="form-control">
@@ -90,11 +92,20 @@
             			<?php endforeach;?>
             		</select>
             	</div>
-        	</div>
+
+        	<?php elseif(!$this->session->userdata('role')):?>
+            	<div class="row">
+                 <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                    <label class="form-check-label" for="exampleCheck1"><a href="http://localhost/18006965/assets/pdfs/privacy_policy.pdf" target="_blank">Privacy Policy</a></label>
+                  </div>
+                </div>
         	<?php endif;?>
         	</div>
+    	</div>
+    	    	
         	
-        	<button type="submit" class="btn btn-primary btn-block">Register</button>
+       <button type="submit" class="btn btn-primary btn-block">Register</button>
         	
 
 
