@@ -53,7 +53,7 @@ class Memberships extends CI_Controller {
         $this->paypal_lib->add_field('return', $returnURL);
         $this->paypal_lib->add_field('cancel_return', $cancelURL);
         $this->paypal_lib->add_field('notify_url', $notifyURL);
-        $this->paypal_lib->add_field('item_name', $membership['name']);
+        $this->paypal_lib->add_field('item_name', $membership['membership']);
         $this->paypal_lib->add_field('custom', $userID);
         $this->paypal_lib->add_field('item_number',  $membership['membership_id']);
         $this->paypal_lib->add_field('amount',  $membership['price']);
