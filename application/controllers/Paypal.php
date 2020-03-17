@@ -31,7 +31,12 @@ class Paypal extends CI_Controller{
         $data['status']         = $this->input->get('st');
       
         // Pass the transaction data to ipn method
-        $this->ipn();
+        //$this->ipn();
+        
+        // Pass the transaction data to view
+        $this->load->view('templates/header');
+        $this->load->view('paypal/success', $data);
+        $this->load->view('templates/footer');
     }
      
      function cancel(){
@@ -77,11 +82,11 @@ class Paypal extends CI_Controller{
                 $this->membership_model->membership_user($expires_on, $this->input->post('item_number'), $this->input->post('custom'));
                 
                 // set message in a session
-                $this->session->set_flashdata('successful_transaction', 'Your transaction was successful.');
+                //$this->session->set_flashdata('successful_transaction', 'Your transaction was successful.');
                 
                 //redirect to homepage
-                redirect(base_url('home'));
-            }
+                //redirect(base_url('home'));
+           }
         }
     }
 }

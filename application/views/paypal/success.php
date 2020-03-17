@@ -1,10 +1,15 @@
-<div class="col-lg-12">
-    <h4 class="success">Thank you! Your payment was successful.</h4>
-    <p>Item Name : <span><?php echo $item_name; ?></span></p>
-    <p>Item Number : <span><?php echo $item_number; ?></span></p>
-    <p>TXN ID : <span><?php echo $txn_id; ?></span></p>
-    <p>Amount Paid : <span>$<?php echo $payment_amt.' '.$currency_code; ?></span></p>
-    <p>Payment Status : <span><?php echo $status; ?></span></p>
+<div class="card">
+  <div class="card-header">
+    Thank you! Your payment was successful.
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Payment Details:</h5>
+    <p class="card-text"><b>Item Name : </b><span><?php echo $item_name; ?></span></p>
+    <p class="card-text"><b>Item Number : </b><span><?php echo $item_number; ?></span></p>
+    <p class="card-text"><b>TXN ID : </b><span><?php echo $txn_id; ?></span></p>
+    <p class="card-text"><b>Amount Paid : </b><span>$<?php echo $payment_amt.' '.$currency_code; ?></span></p>
+    <p class="card-text"><b>Payment Status : </b><span><?php echo $status; ?></span></p>
     
-    <a href="<?php echo base_url('memberships/index'); ?>">Back to Memberships</a>
+    <a href="<?php echo base_url();?>payments" class="btn btn-primary">View Payments</a>
+  </div>
 </div>
