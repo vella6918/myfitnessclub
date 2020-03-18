@@ -604,7 +604,7 @@
                 if($password && $username){
                     $this->email->message('<p>You have been registered to The Fitness Club</p><p>You can now access the gym with this code: '.$code.'</p><p>You can access the web application with the following credentials</p><p><b>Username: </b>'.$username.'</p><p><b>Password: </b>'.$password.'</p>');
                 }else{
-                    $this->email->message('<p>WELCOME to The Fitness Club. Your online registration was successfull. Next step is to purchase a membership from the web application.</p><p>Once putchased you will be able to access the gyms\'s premisses by presenting the following code to the reception desk.</p> <p>code: '.$code.'</p>');
+                    $this->email->message('<p>WELCOME to The Fitness Club. Your online registration was successful. Next step is to purchase a membership from the web application.</p><p>Once purchased you will be able to access the gym\'s premises by presenting the following code to the reception desk.</p> <p>Code Number: <b>'.$code.'</b></p><p>Regards<br>The Management</p>');
                 }
                 
                 

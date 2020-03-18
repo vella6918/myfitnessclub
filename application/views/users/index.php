@@ -8,7 +8,7 @@
 			<?php if($this->session->userdata('role') != 3):?>
     			<a href="<?php echo base_url().'users';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">All Users</a>&nbsp;
     			<a href="<?php echo base_url().'members';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Members</a>&nbsp;
-    			<a href="<?php echo base_url().'trainers';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Tainers</a>&nbsp;
+    			<a href="<?php echo base_url().'trainers';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Trainers</a>&nbsp;
     			<a href="<?php echo base_url().'admins';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Administrators</a>&nbsp;
     			<a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Assigned Members</a>
 			<?php endif;?>
