@@ -259,7 +259,7 @@ class Workouts extends CI_Controller{
             $this->session->set_flashdata('workout_updated', 'Your workout has been updated');
                 
             //redirect user
-            redirect('my_workouts');      
+            redirect('workouts/view/'.$workout_id);      
         
         
         }else {
