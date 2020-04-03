@@ -59,7 +59,7 @@
               
                   <?php foreach($exercises as $exercise): ?>
                   <tr>
-                      <td><b>Exercise <?php echo $counter;?>:</b> <?php echo $exercise['exercise'];?></td>
+                      <td><b>Exercise <?php echo $counter;?>:</b><a href="<?php echo base_url().'exercises/view/'.$exercise['exercise_id']; ?>"> <?php echo $exercise['exercise'];?> </a></td>
                       <td><b>Sets:</b> <?php echo $exercise['sets'];?></td>
                       <td><b>Reps:</b> <?php echo $exercise['reps'];?></td>
                   </tr>
