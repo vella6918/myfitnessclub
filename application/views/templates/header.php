@@ -387,5 +387,10 @@ if($this->session->userdata('logged_in') == TRUE){
             <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
             <?php endif;?>
             
+            <?php if($this->session->flashdata('membership_not_deleted')):?>
+            <?php $flash_message = $this->session->flashdata('membership_not_deleted');?>
+            <?php echo '<p class="alert alert-danger">'.$flash_message.'</p>';?>
+            <?php endif;?>
+            
             </div>
             

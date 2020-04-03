@@ -126,14 +126,21 @@ class Memberships extends CI_Controller {
         }
         
         //if user admin go to delete method in the membership model class
-        $this->membership_model->delete_membership($membership_id);
+        $delete = $this->membership_model->delete_membership($membership_id);
             
-        
-        // Set message
-        $this->session->set_flashdata('membership_deleted', 'Your membership has been deleted');
-        
-        //redirect
-        redirect('memberships');
+        If($delete){
+            // Set message
+            $this->session->set_flashdata('membership_deleted', 'Your membership has been deleted');
+            
+            //redirect
+            redirect('memberships');
+        }else{
+            // Set message
+            $this->session->set_flashdata('membership_not_deleted', 'Membership cannot be deleted. It can only be editted.');
+            
+            //redirect
+            redirect('memberships');
+        }
      
     }//end of delete method
     
