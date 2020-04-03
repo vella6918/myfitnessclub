@@ -94,8 +94,7 @@ class Workout_model extends CI_Model{
         
         //Exercise data array
         $data= array(
-            'workout' => $this->db->escape_str($this->input->post('workout')),
-            'created_by' => $this->db->escape_str($this->session->userdata('user_id'))
+            'workout' => $this->db->escape_str($this->input->post('workout'))
         );
         
         //get workout
