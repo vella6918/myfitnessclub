@@ -254,25 +254,12 @@ class Workouts extends CI_Controller{
                 $this->workout_model->insert_exercise_into_workout($workout_id, $current_e, $current_s, $current_r);
                 
             }
-            
-            
-            
-            
-            
-            if($update){
-                // Set message
-                $this->session->set_flashdata('workout_updated', 'Your workout has been updated');
+
+            // Set message
+            $this->session->set_flashdata('workout_updated', 'Your workout has been updated');
                 
-                //redirect user
-                redirect('my_workouts');
-            }else{
-                // Set message
-                $this->session->set_flashdata('workout_failed_to_update', 'Your workout has failed to update');
-                
-                //redirect user
-                redirect('workouts/view/'.$workout_id);
-            }
-        
+            //redirect user
+            redirect('my_workouts');      
         
         
         }else {
