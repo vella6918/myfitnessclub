@@ -31,6 +31,7 @@ $route['users'] = 'users/index';
 $route['admins'] = 'users/get_admins';
 $route['trainers'] = 'users/get_trainers';
 $route['members'] = 'users/get_members';
+$route['assigned'] = 'users/get_assigned_trainees';
 $route['login'] = 'users/login';
 $route['view/(:any)'] = 'users/view/$1';
 $route['edit/(:any)'] = 'users/edit/$1';

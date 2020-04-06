@@ -10,7 +10,7 @@
     			<a href="<?php echo base_url().'members';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Members</a>&nbsp;
     			<a href="<?php echo base_url().'trainers';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Trainers</a>&nbsp;
     			<a href="<?php echo base_url().'admins';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Administrators</a>&nbsp;
-    			<a href="#" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Assigned Members</a>
+    			<a href="<?php echo base_url().'assigned';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Assigned Members</a>
 			<?php endif;?>
     		</div>
 		</div>
@@ -50,7 +50,6 @@
               </td>
               <td>
               	<a href="<?php echo base_url().'users/view/'.$user['user_id'];?>" class="btn btn-info btn-sm">View</a>&nbsp;&nbsp;
-              	<a href="<?php echo base_url().'users/resetPassword/'.$user['user_id'];?>" class="btn btn-warning btn-sm">Reset Password</a>
               </td>
           </tr>
           
