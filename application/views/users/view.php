@@ -13,12 +13,14 @@
                   	<?php else:?>
                   		<a href="<?php echo base_url().'users/disable/'.$user['user_id'];?>" class="btn btn-danger btn-sm">Disable</a>&nbsp;&nbsp;
                   	<?php endif;?>
-                  	
+                <?php endif;?>
+                
+                <?php if($this->session->userdata('role') == 1 || $this->session->userdata('user_id') == $user['user_id']):?>
                   	<a href="<?php echo base_url().'users/edit/'.$user['user_id'];?>" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;
                   	<a href="<?php echo base_url().'users/resetPassword/'.$user['user_id'];?>" class="btn btn-warning btn-sm">Reset Password</a>
               	<?php endif;?>
               	
-              	<?php if($user['role_id']==3):?>
+              	<?php if($this->session->userdata('role') == 1 && $user['role_id']==3):?>
               	<a href="<?php echo base_url().'users/assign_trainer/'.$user['user_id'];?>" class="btn btn-success btn-sm">Assign Trainer</a>
               	<?php endif;?>
               </th>

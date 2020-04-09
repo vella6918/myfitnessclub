@@ -170,7 +170,7 @@ if($this->session->userdata('logged_in') == TRUE){
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                           <a class="dropdown-item" href="<?php echo base_url();?>inbox">Inbox</a>
-                          <a class="dropdown-item" href="<?php echo base_url();?>edit/<?php echo $user['user_id'];?>">Edit Profile</a>
+                          <a class="dropdown-item" href="<?php echo base_url();?>view/<?php echo $user['user_id'];?>">My Profile</a>
                         <div class="dropdown-divider"></div>
                           <a class="dropdown-item" href="<?php echo base_url();?>users/logout">Logout</a>
                         </div>
