@@ -23,7 +23,7 @@
         	
         <div class="form-group">
         	<label>Message</label>
-        	<textarea type="text" class="form-control"name="message" placeholder="Message"></textarea>
+        	<textarea type="text" class="form-control"name="message" placeholder="Message" required></textarea>
         </div>
         
         <div class="form-group">
