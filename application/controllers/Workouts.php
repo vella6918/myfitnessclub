@@ -11,6 +11,11 @@ class Workouts extends CI_Controller{
             redirect('users/login');
         }
         
+        //check if user is administrator
+        if($this->session->userdata('role') != 1){
+            //if user is not admin error 404 will shpw up
+            show_404();
+        }        
 
         $data['title'] = 'All Workouts';
         $data['workouts'] = $this->workout_model->get_workouts();
