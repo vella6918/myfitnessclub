@@ -25,6 +25,7 @@ $route['workouts'] = 'workouts/index';
 $route['my_workouts'] = 'workouts/my_workouts';
 $route['public'] = 'workouts/public_workouts';
 $route['share/(:any)'] = 'workouts/share/$1';
+$route['shared'] = 'workouts/shared_workouts';
 
 //users
 $route['users'] = 'users/index';

@@ -1,10 +1,16 @@
 
 		
 		<div class="row">
-        	<div class="col-lg-6">
-        		<h1><?php echo $title;?></h1>
-        	</div>
-        </div> 
+			<div class="col-lg-6 col-md-6">
+    			<h1><?php echo $title;?></h1>
+    		</div>
+    		<div class="col-lg-6 col-md-6">
+			<?php if($this->session->userdata('role') == 3):?>
+    			<a href="<?php echo base_url().'my_workouts';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">My Workouts</a>&nbsp;
+    			<a href="<?php echo base_url().'shared';?>" class="btn btn-primary btn-sm active" role="button" aria-pressed="true">Workouts Shared With Me</a>&nbsp;
+			<?php endif;?>
+    		</div>
+		</div>
 		
 		<table class="table table-sm">
           <thead class="thead-dark">

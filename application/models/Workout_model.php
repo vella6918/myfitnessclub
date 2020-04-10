@@ -37,6 +37,13 @@ class Workout_model extends CI_Model{
         return $query->result_array();
     }//end of get_users_workout method
     
+    //get all workouts shared with me
+    public function get_shared_workouts($user_id){
+        $this->db->join('workouts','workouts.workout_id = workout_user.workout_id');
+        $this->db->join('users','users.user_id = workout_user.shared_with');
+        $query = $this->db->get_where('workout_user', array('workout_user.shared_with' => $user_id));
+        return $query->result_array();
+    }//end of get_shared_workouts method
     
     //get current user's workouts
     public function get_my_workouts($user_id){

@@ -40,7 +40,6 @@ class Workouts extends CI_Controller{
         //get all exercises for the workout
         $data['exercises'] = $this->workout_model->get_exercises_workout($workout_id);
         //get all users that can see this workout
-        //get all user roles
         $data['users'] = $this->workout_model->get_users_workout($workout_id);
         
         if(empty($data['workout'])){
@@ -72,6 +71,25 @@ class Workouts extends CI_Controller{
         $this->load->view('workouts/my_workouts', $data);
         $this->load->view('templates/footer');
             
+    }
+    
+    //get current user workouts
+    public function shared_workouts(){
+        //check login
+        if(!$this->session->userdata('logged_in')){
+            redirect('users/login');
+        }
+        
+        //set title
+        $data['title'] = 'Shared Workouts';
+        //get workouts
+        $data['my_workouts'] = $this->workout_model->get_shared_workouts($this->session->userdata('user_id'));
+        
+        
+        $this->load->view('templates/header');
+        $this->load->view('workouts/my_workouts', $data);
+        $this->load->view('templates/footer');
+        
     }
     
     
