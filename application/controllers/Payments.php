@@ -41,6 +41,11 @@ class Payments extends CI_Controller {
             //load index for normal user
             $this->load->view('payments/myPayments', $data);
         }
+        //if user is Trainer
+        elseif($this->session->userdata('role') == 2){
+            //show 404 error
+            show_404();
+        }
         $this->load->view('templates/footer');
     }//end of index method
     
