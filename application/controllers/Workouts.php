@@ -12,17 +12,19 @@ class Workouts extends CI_Controller{
         }
         
         //check if user is administrator
-        if($this->session->userdata('role') != 1){
+        if($this->session->userdata('role') == 1){
             //if user is not admin error 404 will shpw up
-            show_404();
-        }        
+            $data['title'] = 'All Workouts';
+            $data['workouts'] = $this->workout_model->get_workouts();
+            
+            $this->load->view('templates/header');
+            $this->load->view('workouts/index', $data);
+            $this->load->view('templates/footer');
+        }else{
+            $this->my_workouts();
+        }
 
-        $data['title'] = 'All Workouts';
-        $data['workouts'] = $this->workout_model->get_workouts();
 
-        $this->load->view('templates/header');
-        $this->load->view('workouts/index', $data);
-        $this->load->view('templates/footer');
     }//end of index method
     
     
@@ -163,6 +165,10 @@ class Workouts extends CI_Controller{
                }        
             }
             
+            //Activity log
+            $log = "Created a workout - ".$this->input->post('workout');
+            $this->log_model->new_log($this->session->userdata('user_id'), $log);
+            
             // set message in a session
             $this->session->set_flashdata('workout_created', 'You have created a new workout.');
             
@@ -277,6 +283,10 @@ class Workouts extends CI_Controller{
                 $this->workout_model->insert_exercise_into_workout($workout_id, $current_e, $current_s, $current_r);
                 
             }
+            
+            //Activity log
+            $log = "Updated workout #".$workout_id;
+            $this->log_model->new_log($this->session->userdata('user_id'), $log);
 
             // Set message
             $this->session->set_flashdata('workout_updated', 'Your workout has been updated');
@@ -307,6 +317,10 @@ class Workouts extends CI_Controller{
             
             //if user admin go to delete method in the membership model class
             $this->workout_model->delete_workout($workout_id);
+            
+            //Activity log
+            $log = "Deleted workout #".$workout_id;
+            $this->log_model->new_log($this->session->userdata('user_id'), $log);
                        
             // Set message
             $this->session->set_flashdata('workout_deleted', 'Your workout has been deleted');

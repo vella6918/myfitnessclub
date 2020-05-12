@@ -12,7 +12,7 @@
 
 <h3>Email</h3>
 <hr>
-<p>thefitnestics@gmail.com</p>
+<p>thefitnetics@gmail.com</p>
 
 </br>
 
