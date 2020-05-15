@@ -1,6 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
+//logs
+$route['logging'] = 'logs/get_logs';
+
 //messages
 $route['inbox'] = 'messages/inbox';
 $route['sent'] = 'messages/sent';

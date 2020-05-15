@@ -71,7 +71,11 @@ if($this->session->userdata('logged_in') == TRUE){
                       		
                       		<li class="nav-item">
                               <a class="nav-link" href="<?php echo base_url();?>workouts">Workouts</a>
-                        	</li>                 			
+                        	</li>
+                        	
+                        	<li class="nav-item">
+                              <a class="nav-link" href="<?php echo base_url();?>logging">Logging</a>
+                        	</li>                  			
                          <?php endif; ?>
                          
                          
