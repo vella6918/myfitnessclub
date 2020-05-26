@@ -1,0 +1,17 @@
+
+body {
+   background-image: url(../images/background.jpg);
+   background-size: cover;
+   background-attachment:fixed;
+}
+
+.content{
+    width: 60%;
+    padding: 40px;
+    margin: 30px auto;
+    font-family: calibri;
+    opacity: 0.9;
+    background-color: white;
+}
+
+
