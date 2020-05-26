@@ -17,7 +17,7 @@
 
 		<div class="row">
             <?php  foreach ($memberships as $membership) : ?>
-            	<div class="col-lg-2">
+            	<div class="col-sm-12 col-md-12 col-lg-4">
                     <div class="card ">
                       <div class="card-header">
                         <?php echo $membership['membership'];?>

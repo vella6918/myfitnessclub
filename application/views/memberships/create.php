@@ -15,6 +15,10 @@
         		<input type="text" class="form-control" name="name" placeholder="Name" required autofocus>
         	</div>
         	<div class="form-group">
+        		<label>Duration in days</label>
+        		<input type="text" class="form-control" name="days" placeholder="Days" required autofocus>
+        	</div>
+        	<div class="form-group">
         		<label>Price in &euro;</label>
         		<input type="text" class="form-control" name="price" placeholder="Price" required autofocus>
         	</div>
