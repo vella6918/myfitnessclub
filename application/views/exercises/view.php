@@ -33,6 +33,6 @@
 
 
 <div class="embed-responsive embed-responsive-21by9">
-  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $exercise['video'];?>?autoplay=1"></iframe>
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $exercise['video'];?>?autoplay=1&controls=0&showinfo=0" frameborder="0" allowfullscreen></iframe>
 </div>
 
