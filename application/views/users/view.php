@@ -1,4 +1,4 @@
-<h2>User #<?php echo $user['user_id'];?></h2></br></br>
+<h2>User: <?php echo $user['name'];?> <?php echo $user['surname'];?></h2></br></br>
 
 
 <div>
@@ -81,6 +81,10 @@
                               
                       ?>
                   </td>
+              </tr>
+              <tr>
+                  <td><b>Code: </b></td>
+                  <td><?php echo $user['entry_code'];?></td>
               </tr>
               
               <?php if($user['role_id']==3):?>
