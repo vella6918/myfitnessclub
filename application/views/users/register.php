@@ -94,10 +94,10 @@
             	</div>
 
         	<?php elseif(!$this->session->userdata('role')):?>
-            	<div class="row">
-                 <div class="form-check">
+            	<div class="row bottom-align-text">
+                 <div class="form-check ">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
-                    <label class="form-check-label" for="exampleCheck1"><a href="http://localhost/18006965/assets/pdfs/privacy_policy.pdf" target="_blank">Privacy Policy</a></label>
+                    <label class="form-check-label" for="exampleCheck1">I have read and agree to the website <a href="<?php echo base_url().'assets/pdfs/privacy_policy.pdf';?>" target="_blank">Privacy Policy</a></label>
                   </div>
                 </div>
         	<?php endif;?>
