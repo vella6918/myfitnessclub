@@ -10,6 +10,10 @@
         		<input type="text" class="form-control" name="name" placeholder="Name" value="<?php echo $membership['membership']; ?>" required autofocus>
         	</div>
         	<div class="form-group">
+        		<label>Duration in days</label>
+        		<input type="text" class="form-control" name="days" placeholder="Days" value="<?php echo $membership['days']; ?>" required autofocus>
+        	</div>
+        	<div class="form-group">
         		<label>Price in &euro;</label>
         		<input type="text" class="form-control" name="price" placeholder="Price" value="<?php echo $membership['price']; ?>" required autofocus>
         	</div>

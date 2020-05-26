@@ -7,9 +7,10 @@
             <tr>
               <th scope="col">Exercise Details</th>
               <th>
-              	
+              <?php if($this->session->userdata('role') == 1):?>
               	<a href="<?php echo base_url().'exercises/edit/'.$exercise['exercise_id'];?>" class="btn btn-warning btn-sm">Edit</a>&nbsp;&nbsp;
               	<a href="<?php echo base_url().'exercises/delete/'.$exercise['exercise_id'];?>" class="btn btn-danger btn-sm">Delete</a>
+              <?php endif;?>
               </th>
             </tr>
           </thead>
@@ -30,14 +31,8 @@
       </table>
 </div>
 
-</br></br>
 
-<div class="justify-content-center align-items-center row">
-    <div class="col-md-5 col-md-offset-5">
-    	<iframe width="520" height="415"
-        	src="https://www.youtube.com/embed/<?php echo $exercise['video'];?>?autoplay=1">
-        </iframe>
-    </div>
+<div class="embed-responsive embed-responsive-21by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<?php echo $exercise['video'];?>?autoplay=1"></iframe>
 </div>
-
 
