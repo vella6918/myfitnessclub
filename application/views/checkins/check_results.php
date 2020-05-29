@@ -44,11 +44,11 @@ if($details['disabled'] == TRUE){
               </tr>
               <tr>
                   <td><b>Mobile Number:</b></td>
-                  <td></td>
+                  <td><?php echo $details['mobile'];?></td>
               </tr>
               <tr>
                   <td><b>Date of Birth:</b></td>
-                  <td></td>
+                  <td><?php echo $details['dob'];?></td>
               </tr>
               <tr>
                   <td><b>Enrolled on:</b></td>
@@ -62,7 +62,7 @@ if($details['disabled'] == TRUE){
               </tr>
                <tr>
                   <td><b>Gender:</b></td>
-                  <td></td>
+                  <td><?php echo $details['gender'];?></td>
               </tr>
               <tr>
                   <td><b>Username: </b></td>
