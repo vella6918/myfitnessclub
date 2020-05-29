@@ -41,7 +41,7 @@ class Checkins extends CI_Controller {
                 //if no data found
                 if(empty($data['details'])){
                     // Set message
-                    $this->session->set_flashdata('no_membership', 'No Data Found. Check Database.');
+                    $this->session->set_flashdata('no_membership', 'This Member never purchased a membership');
                     
                     //redirect
                     redirect('check');
