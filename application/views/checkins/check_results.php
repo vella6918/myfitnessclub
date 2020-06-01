@@ -1,17 +1,17 @@
 <?php 
 
-$date = date('y-m-d');
+$date = date('Y-m-d');
 
 //check if user has been disabled
 if($details['disabled'] == TRUE){
     echo '<p class="alert alert-danger"><b>USER HAS BEEN DISABLED</b></p>';
 }else{
     
-    //check if user holds a valif membership
+    //check if user holds a valid membership
     if($details['expires_on'] >= $date){
         echo '<p class="alert alert-success"><b>VALID MEMBERSHIP</b></p>';
-    }else{
-        echo '<p class="alert alert-danger"><b>ACCESS DENIED</b></p>';
+    }elseif($details['expires_on'] < $date){
+        echo '<p class="alert alert-danger"><b>ACCESS DENIED - Expired Membership</b></p>';
     }
 
 }
